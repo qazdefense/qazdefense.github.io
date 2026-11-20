@@ -1,7 +1,7 @@
 {
-  "name": "qazdef-site",
+  "name": "qazdefense-site",
   "version": "1.0.0",
-  "description": "Сайт Team QazDef",
+  "description": "Сайт QazDefense",
   "main": "src/server.js",
   "directories": {
     "doc": "docs"

@@ -17,7 +17,7 @@ const out = (cmd, args, opts = {}) => execFileSync(cmd, args, { encoding: 'utf8'
 run(process.execPath, [path.join(root, 'src', 'build-static.js')]);
 
 const url = out('git', ['remote', 'get-url', remote], { cwd: root });
-const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'qazdef-pages-'));
+const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'qazdefense-pages-'));
 fs.cpSync(path.join(root, 'dist'), tmp, { recursive: true });
 
 const git = (args) => run('git', args, { cwd: tmp });

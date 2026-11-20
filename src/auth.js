@@ -1,7 +1,7 @@
 'use strict';
 const crypto = require('node:crypto');
 
-const COOKIE = 'qd_admin';
+const COOKIE = 'qazdefense_admin';
 const TTL_MS = 1000 * 60 * 60 * 12; // 12 часов
 
 function sign(secret, payload) {

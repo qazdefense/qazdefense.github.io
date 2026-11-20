@@ -6,7 +6,7 @@ const root = path.resolve(__dirname, '..');
 module.exports = {
   port: Number(process.env.PORT) || 3000,
   // Домен пока не выбран — подставьте после покупки.
-  siteUrl: process.env.SITE_URL || 'https://qazdef.kz',
+  siteUrl: process.env.SITE_URL || 'https://qazdefense.github.io',
   dbPath: process.env.DB_PATH || path.join(root, 'data', 'site.db'),
   uploadsDir: process.env.UPLOADS_DIR || path.join(root, 'uploads'),
   admin: {

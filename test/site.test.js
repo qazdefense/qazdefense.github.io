@@ -13,7 +13,7 @@ const ADMIN = { user: 'admin', password: 'test-pass', secret: 'x'.repeat(32) };
 async function startApp() {
   const repo = createRepo(openDb(':memory:'));
   seed(repo);
-  const uploadsDir = fs.mkdtempSync(path.join(os.tmpdir(), 'qd-up-'));
+  const uploadsDir = fs.mkdtempSync(path.join(os.tmpdir(), 'qazdefense-up-'));
   const app = createApp({ repo, uploadsDir, admin: ADMIN, contacts: { phone: '[телефон]', telegram: '[Telegram]', email: '[e-mail]', geography: 'Весь Казахстан' }, siteUrl: 'http://x' });
   const server = await new Promise((r) => { const s = app.listen(0, () => r(s)); });
   const base = `http://127.0.0.1:${server.address().port}`;
@@ -107,7 +107,7 @@ test('админка требует вход, неверный пароль не
       body: new URLSearchParams({ login: 'admin', password: 'wrong' }),
     });
     assert.equal(bad.status, 401);
-    const forged = await fetch(base + '/admin/cases', { redirect: 'manual', headers: { cookie: 'qd_admin=admin.99999999999999.fake' } });
+    const forged = await fetch(base + '/admin/cases', { redirect: 'manual', headers: { cookie: 'qazdefense_admin=admin.99999999999999.fake' } });
     assert.equal(forged.status, 302);
   } finally { close(); }
 });
