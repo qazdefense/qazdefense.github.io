@@ -170,3 +170,8 @@
 /* логотип QazDefense */
 img.logo-mark { width: 36px; height: 32px; border-radius: 0; background: none; padding: 0; object-fit: contain; }
 .logo-light img.logo-mark, .is-home .site-header:not(.is-scrolled) img.logo-mark { background: var(--white); border-radius: 10px; padding: 4px 3px; width: 40px; height: 36px; }
+
+/* логотип: значок и название на общей белой подложке (на синем и тёмном фоне) */
+.logo-light img.logo-mark, .is-home .site-header:not(.is-scrolled) img.logo-mark { background: none; padding: 0; border-radius: 0; width: 36px; height: 32px; }
+.logo-light, .is-home .site-header:not(.is-scrolled) .logo { background: var(--white); color: var(--navy); padding: 6px 16px 6px 8px; border-radius: 14px; box-shadow: 0 8px 24px -10px rgba(8, 20, 60, .45); }
+.is-home .site-header:not(.is-scrolled) .logo { color: var(--navy); }
