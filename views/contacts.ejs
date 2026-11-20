@@ -1,0 +1,27 @@
+<%- include('partials/head') %>
+<%- include('partials/page-hero', { heading: 'Контакты', eyebrow: '', crumbs: [{ label: 'Контакты' }], lead: 'Работаем по всему Казахстану. Оставьте заявку, мы свяжемся и обсудим задачу.', actions: '<a class="btn btn-cta btn-lg" href="#form">Оставить заявку</a>' }) %>
+
+<section class="section section-tight">
+  <div class="container audit-grid contacts-page">
+    <div class="audit-info">
+      <div class="contact-cards">
+        <div class="card"><span class="fc-label">Телефон / WhatsApp</span><strong class="contact-val"><%= contacts.phone %></strong></div>
+        <div class="card"><span class="fc-label">Telegram</span><strong class="contact-val"><%= contacts.telegram %></strong></div>
+        <div class="card"><span class="fc-label">E-mail</span><strong class="contact-val"><%= contacts.email %></strong></div>
+        <div class="card"><span class="fc-label">География</span><strong class="contact-val"><%= contacts.geography %></strong></div>
+      </div>
+      <h2 class="h-sm">Как начинаем работу</h2>
+      <ol class="steps">
+        <li><strong>Консультация</strong><span>15 минут: обсуждаем задачу и формат работы.</span></li>
+        <li><strong>Аудит или бриф</strong><span>Для 1С — бесплатный аудит, для разработки — бриф и оценка.</span></li>
+        <li><strong>Предложение</strong><span>Срок и стоимость фиксируем до старта.</span></li>
+      </ol>
+    </div>
+    <div class="form-card" id="form">
+      <h2 class="h-sm">Оставить заявку</h2>
+      <p class="muted">Опишите задачу в двух словах, остальное уточним по телефону.</p>
+      <%- include('partials/lead-form', { action: '/contacts', messageLabel: 'Задача', submitLabel: 'Отправить заявку' }) %>
+    </div>
+  </div>
+</section>
+<%- include('partials/foot') %>

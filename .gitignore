@@ -1,0 +1,13 @@
+node_modules/
+.env
+data/
+uploads/
+
+# материалы других сессий, не часть сайта
+/book/
+/deck/
+/exchange/
+/guide/
+/ops/
+# служебные файлы Claude
+/.claude/

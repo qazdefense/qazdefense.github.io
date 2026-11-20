@@ -1,0 +1,45 @@
+<%- include('partials/head') %>
+<%- include('partials/page-hero', { heading: 'Кейсы', eyebrow: '', crumbs: [{ label: 'Кейсы' }], lead: 'Задача, решение и результат по каждому проекту.' }) %>
+<%
+  function q(ind, dir) {
+    var p = [];
+    if (ind) p.push('industry=' + encodeURIComponent(ind));
+    if (dir) p.push('direction=' + encodeURIComponent(dir));
+    return '/cases' + (p.length ? '?' + p.join('&') : '');
+  }
+%>
+<section class="section section-tight">
+  <div class="container">
+    <div class="filters">
+      <div class="filter-row">
+        <span class="filter-label">Направление</span>
+        <div class="chips">
+          <a class="chip <%= !filter.direction ? 'is-active' : '' %>" href="<%= q(filter.industry, '') %>">Все</a>
+          <% directions.forEach(function (d) { %>
+            <a class="chip <%= filter.direction === d.slug ? 'is-active' : '' %>" href="<%= q(filter.industry, d.slug) %>"><%= d.name %></a>
+          <% }) %>
+        </div>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">Отрасль</span>
+        <div class="chips">
+          <a class="chip <%= !filter.industry ? 'is-active' : '' %>" href="<%= q('', filter.direction) %>">Все</a>
+          <% industries.forEach(function (i) { %>
+            <a class="chip <%= filter.industry === i.slug ? 'is-active' : '' %>" href="<%= q(i.slug, filter.direction) %>"><%= i.name %></a>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+
+    <% if (cases.length) { %>
+      <p class="count"><%= cases.length %> <%= cases.length % 10 === 1 && cases.length % 100 !== 11 ? 'кейс' : (cases.length % 10 >= 2 && cases.length % 10 <= 4 && (cases.length % 100 < 10 || cases.length % 100 >= 20) ? 'кейса' : 'кейсов') %></p>
+      <div class="proj-grid"><% cases.forEach(function (c) { %><%- include('partials/proj-card', { c: c }) %><% }) %></div>
+    <% } else { %>
+      <div class="empty">
+        <p>По выбранным условиям кейсов пока нет.</p>
+        <a class="btn btn-outline btn-sm" href="/cases">Показать все кейсы</a>
+      </div>
+    <% } %>
+  </div>
+</section>
+<%- include('partials/foot') %>

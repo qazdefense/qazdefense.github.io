@@ -1,0 +1,12 @@
+<%- include('partials/head') %>
+<%- include('partials/page-hero', { heading: 'Новости', eyebrow: '', crumbs: [{ label: 'Новости' }], lead: 'Новости команды и изменения, которые касаются учёта и ИТ.' }) %>
+<section class="section section-tight">
+  <div class="container">
+    <% if (news.length) { %>
+      <div class="proj-grid"><% news.forEach(function (n) { %><%- include('partials/news-card', { n: n }) %><% }) %></div>
+    <% } else { %>
+      <div class="empty">Новостей пока нет.</div>
+    <% } %>
+  </div>
+</section>
+<%- include('partials/foot') %>

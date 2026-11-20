@@ -1,0 +1,48 @@
+<%- include('partials/head') %>
+<%
+  var tones = { '1c': '1c', it: 'it', web: '', ai: 'ai', design: 'design' };
+  var badges = { '1c': 'ledger', it: 'server', web: 'code', ai: 'spark', design: 'palette' };
+  var arrow = include('partials/icon', { name: 'arrow' });
+  var actions = '<a class="btn btn-cta btn-lg" href="/contacts#form">Обсудить задачу ' + arrow + '</a>';
+  if (dir.slug === '1c') actions += '<a class="link-arrow link-light" href="/audit">Бесплатный аудит 1С</a>';
+%>
+<%- include('partials/page-hero', { heading: dir.name, lead: dir.lead, crumbs: [{ label: 'Направления', href: '/services' }, { label: dir.name }], tone: tones[dir.slug], badge: badges[dir.slug], actions: actions }) %>
+
+<div class="container">
+  <nav class="dir-tabs" aria-label="Другие направления">
+    <% directions.forEach(function (d) { %>
+      <a href="/services/<%= d.slug %>" class="<%= d.slug === dir.slug ? 'is-active' : '' %>" <%- d.slug === dir.slug ? 'aria-current="page"' : '' %>><%= d.name %></a>
+    <% }) %>
+  </nav>
+</div>
+
+<section class="pg">
+  <div class="container">
+    <div class="pg-head"><h2>Что делаем</h2></div>
+    <div class="svc-grid n-<%= Math.min(dir.items.length, 4) %>">
+      <% dir.items.forEach(function (it, i) { %>
+        <div class="svc-card">
+          <span class="svc-num"><%= String(i + 1).padStart(2, '0') %></span>
+          <h3><%= it.title %></h3>
+          <div class="result">→ <%= it.result %></div>
+        </div>
+      <% }) %>
+    </div>
+    <% if (dir.configs) { %>
+      <div class="pg-head" style="margin-top: 36px"><h2>Конфигурации</h2></div>
+      <div class="chip-row"><% dir.configs.forEach(function (c) { %><span><%= c %></span><% }) %></div>
+    <% } %>
+  </div>
+</section>
+
+<section class="pg">
+  <div class="container">
+    <div class="pg-head"><h2>Кейсы</h2><a class="link-arrow" href="/cases?direction=<%= dir.slug %>">Все кейсы направления</a></div>
+    <% if (cases.length) { %>
+      <div class="proj-grid"><% cases.forEach(function (c) { %><%- include('partials/proj-card', { c: c }) %><% }) %></div>
+    <% } else { %>
+      <div class="empty">Кейсы по этому направлению появятся после публикации в админке.</div>
+    <% } %>
+  </div>
+</section>
+<%- include('partials/foot') %>

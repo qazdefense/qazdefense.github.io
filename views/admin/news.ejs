@@ -1,0 +1,21 @@
+<%- include('_head') %>
+<div class="a-top"><h1>Новости</h1><a class="a-btn a-btn-primary" href="/admin/news/new">+ Добавить новость</a></div>
+<div class="a-card a-pad0">
+  <% if (news.length) { %>
+  <table class="a-table">
+    <thead><tr><th></th><th>Заголовок</th><th>Дата</th><th>Статус</th><th></th></tr></thead>
+    <tbody>
+    <% news.forEach(function (n) { %>
+      <tr>
+        <td class="a-thumb"><% if (n.cover) { %><img src="<%= n.cover %>" alt=""><% } %></td>
+        <td><a class="a-link" href="/admin/news/<%= n.id %>"><%= n.title %></a></td>
+        <td class="a-muted"><%= n.date %></td>
+        <td><span class="a-status <%= n.status %>"><%= n.status === 'published' ? 'Опубликована' : 'Черновик' %></span></td>
+        <td class="a-right"><% if (n.status === 'published') { %><a class="a-link" href="/news/<%= n.slug %>" target="_blank" rel="noopener">На сайте ↗</a><% } %></td>
+      </tr>
+    <% }) %>
+    </tbody>
+  </table>
+  <% } else { %><p class="a-empty">Новостей пока нет.</p><% } %>
+</div>
+<%- include('_foot') %>

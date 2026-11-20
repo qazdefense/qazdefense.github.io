@@ -1,0 +1,51 @@
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-cta">
+      <div>
+        <h2>Расскажите о задаче</h2>
+        <p>15 минут на звонок: обсудим задачу и формат работы. Срок и стоимость фиксируем до старта.</p>
+      </div>
+      <div class="footer-cta-actions">
+        <a class="btn btn-light" href="/contacts#form">Оставить заявку</a>
+        <a class="btn btn-ghost-light" href="/audit">Бесплатный аудит 1С</a>
+      </div>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo logo-light" href="/"><img class="logo-mark" src="/img/logo.svg" alt="" width="36" height="32"><span class="logo-text">QazDefense</span></a>
+        <p>1С, ИТ-инфраструктура, сайты, ИИ-агенты, дизайн и маркетинг. <%= contacts.geography %>.</p>
+      </div>
+      <div>
+        <h3>Направления</h3>
+        <ul>
+          <% directions.forEach(function (d) { %><li><a href="/services/<%= d.slug %>"><%= d.name %></a></li><% }) %>
+        </ul>
+      </div>
+      <div>
+        <h3>Компания</h3>
+        <ul>
+          <li><a href="/industries">Отраслевые решения</a></li>
+          <li><a href="/cases">Кейсы</a></li>
+          <li><a href="/news">Новости</a></li>
+          <li><a href="/audit">Аудит 1С</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Контакты</h3>
+        <ul class="footer-contacts">
+          <li><span>Телефон / WhatsApp</span><%= contacts.phone %></li>
+          <li><span>Telegram</span><%= contacts.telegram %></li>
+          <li><span>E-mail</span><%= contacts.email %></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <%= new Date().getFullYear() %> QazDefense</span>
+      <a href="/kz">Қазақша</a>
+    </div>
+  </div>
+</footer>
+<script src="/js/site.js?v=<%= v %>" defer></script>
+</body>
+</html>

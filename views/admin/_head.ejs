@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title><%= title %> — Админка QazDefense</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css?v=<%= v %>">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body class="admin">
+<% if (typeof bare === 'undefined' || !bare) { %>
+<aside class="a-side">
+  <a class="a-logo" href="/admin"><img src="/img/logo.svg" alt="" width="30" height="26">Админка</a>
+  <nav>
+    <a href="/admin" class="<%= path === '/' ? 'on' : '' %>">Панель</a>
+    <a href="/admin/cases" class="<%= path.startsWith('/cases') ? 'on' : '' %>">Кейсы</a>
+    <a href="/admin/news" class="<%= path.startsWith('/news') ? 'on' : '' %>">Новости</a>
+    <a href="/admin/leads" class="<%= path.startsWith('/leads') ? 'on' : '' %>">Заявки<% if (unread) { %><b><%= unread %></b><% } %></a>
+    <a href="/admin/industries" class="<%= path.startsWith('/industries') ? 'on' : '' %>">Отрасли</a>
+  </nav>
+  <div class="a-side-foot">
+    <a href="/" target="_blank" rel="noopener">Открыть сайт ↗</a>
+    <form method="post" action="/admin/logout"><button type="submit">Выйти</button></form>
+  </div>
+</aside>
+<main class="a-main">
+  <% if (flash) { %><div class="a-flash" role="status"><%= flash %></div><% } %>
+<% } %>

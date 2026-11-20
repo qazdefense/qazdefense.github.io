@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="<%= lang %>">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %><%= title.startsWith('QazDefense') ? '' : ' — QazDefense' %></title>
+  <meta name="description" content="<%= typeof description !== 'undefined' ? description : 'QazDefense: автоматизация учёта и процессов, 1С, ИТ-инфраструктура и защита, сайты и приложения, ИИ-агенты, дизайн и маркетинг. Работаем по всему Казахстану.' %>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css?v=<%= v %>">
+  <link rel="stylesheet" href="/css/ui.css?v=<%= v %>">
+  <% if (path === '/') { %><link rel="stylesheet" href="/css/home.css?v=<%= v %>"><% } %>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="<%= path === '/' ? 'is-home' : '' %>">
+<a class="skip" href="#main">К содержанию</a>
+<header class="site-header" data-header>
+  <div class="container header-row">
+    <a class="logo" href="/" aria-label="QazDefense — на главную">
+      <img class="logo-mark" src="/img/logo.svg" alt="" width="36" height="32">
+      <span class="logo-text">QazDefense</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Основное меню">
+      <div class="nav-item has-sub">
+        <a href="/services" class="<%= path.startsWith('/services') ? 'is-active' : '' %>">Направления</a>
+        <div class="sub">
+          <% directions.forEach(function (d) { %>
+            <a href="/services/<%= d.slug %>"><strong><%= d.name %></strong><span><%= d.short %></span></a>
+          <% }) %>
+        </div>
+      </div>
+      <a href="/industries" class="<%= path.startsWith('/industries') ? 'is-active' : '' %>">Отрасли</a>
+      <a href="/cases" class="<%= path.startsWith('/cases') ? 'is-active' : '' %>">Кейсы</a>
+      <a href="/news" class="<%= path.startsWith('/news') ? 'is-active' : '' %>">Новости</a>
+      <a href="/audit" class="<%= path.startsWith('/audit') ? 'is-active' : '' %>">Аудит 1С</a>
+      <a href="/contacts" class="<%= path.startsWith('/contacts') ? 'is-active' : '' %>">Контакты</a>
+      <a class="btn btn-primary nav-cta" href="/contacts#form">Обсудить задачу</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-primary btn-sm" href="/contacts#form">Обсудить задачу</a>
+      <button class="burger" type="button" aria-controls="nav" aria-expanded="false" aria-label="Меню" data-burger><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<main id="main">

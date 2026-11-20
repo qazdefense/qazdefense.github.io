@@ -1,0 +1,22 @@
+<%- include('_head') %>
+<div class="a-top"><h1>Кейсы</h1><a class="a-btn a-btn-primary" href="/admin/cases/new">+ Добавить кейс</a></div>
+<div class="a-card a-pad0">
+  <% if (cases.length) { %>
+  <table class="a-table">
+    <thead><tr><th></th><th>Заголовок</th><th>Отрасль</th><th>Статус</th><th>Изменён</th><th></th></tr></thead>
+    <tbody>
+    <% cases.forEach(function (c) { %>
+      <tr>
+        <td class="a-thumb"><% if (c.cover) { %><img src="<%= c.cover %>" alt=""><% } %></td>
+        <td><a class="a-link" href="/admin/cases/<%= c.id %>"><%= c.title %></a></td>
+        <td><%= c.industry_name || '—' %></td>
+        <td><span class="a-status <%= c.status %>"><%= c.status === 'published' ? 'Опубликован' : 'Черновик' %></span></td>
+        <td class="a-muted"><%= c.updated_at.slice(0, 10) %></td>
+        <td class="a-right"><% if (c.status === 'published') { %><a class="a-link" href="/cases/<%= c.slug %>" target="_blank" rel="noopener">На сайте ↗</a><% } %></td>
+      </tr>
+    <% }) %>
+    </tbody>
+  </table>
+  <% } else { %><p class="a-empty">Кейсов пока нет.</p><% } %>
+</div>
+<%- include('_foot') %>

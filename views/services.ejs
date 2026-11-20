@@ -1,0 +1,9 @@
+<%- include('partials/head') %>
+<%- include('partials/page-hero', { heading: 'Направления', crumbs: [{ label: 'Направления' }], lead: 'Каждое направление заказывается отдельно. Если задача затрагивает несколько, её ведёт одна команда.', actions: '<a class="btn btn-cta btn-lg" href="/contacts#form">Обсудить задачу ' + include('partials/icon', { name: 'arrow' }) + '</a>' }) %>
+
+<section class="pg">
+  <div class="container">
+    <%- include('partials/tiles') %>
+  </div>
+</section>
+<%- include('partials/foot') %>

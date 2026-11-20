@@ -1,0 +1,97 @@
+<%- include('partials/head') %>
+<% var dm = {}; directions.forEach(function (x) { dm[x.slug] = x; }); %>
+
+<section class="s s-hero slide" id="start" data-slide="Главное" data-tone="dark">
+  <div class="container s-inner hero-grid">
+    <div class="hero-copy">
+      <span class="pill"><span class="pill-dot"></span>Работаем по всему Казахстану</span>
+      <h1>Автоматизация учёта, продаж и&nbsp;рутинных процессов</h1>
+      <p class="hero-sub">Учёт, ИТ-инфраструктура, сайты и ИИ-агенты. Одна команда.</p>
+      <div class="hero-cta">
+        <a class="btn btn-cta btn-lg" href="/contacts#form">Обсудить задачу <%- include('partials/icon', { name: 'arrow' }) %></a>
+        <a class="link-arrow link-light" href="/audit">Бесплатный аудит 1С</a>
+      </div>
+    </div>
+    <div class="hero-visual" data-tilt>
+      <%- include('partials/dash') %>
+    </div>
+  </div>
+</section>
+
+<section class="s s-white slide" id="directions" data-slide="Направления" data-tone="light">
+  <div class="container s-inner">
+    <div class="s-head">
+      <h2>Что мы делаем</h2>
+      <a class="link-arrow" href="/services">Все направления</a>
+    </div>
+    <%- include('partials/tiles') %>
+  </div>
+</section>
+
+<section class="s s-yellow slide" id="how" data-slide="Как работаем" data-tone="light">
+  <div class="container s-inner how">
+    <div class="how-left">
+      <h2>Как начинаем работу</h2>
+      <p class="how-lead">Три шага до старта. Срок и стоимость фиксируем заранее.</p>
+      <a class="how-audit" href="/audit">
+        <span class="audit-badge">Бесплатно</span>
+        <strong>Экспресс-аудит 1С</strong>
+        <span class="how-audit-meta">2 часа работы специалиста и письменный отчёт с приоритетами</span>
+        <span class="how-finds" aria-hidden="true">
+          <span class="how-find"><em class="risk risk-high">Находка 01 · высокий риск</em>Резервная копия не проверялась на восстановление</span>
+          <span class="how-find"><em class="risk risk-mid">Находка 02 · средний риск</em>ЭСФ расходятся с остатками Виртуального склада</span>
+        </span>
+        <span class="btn btn-cta">Записаться на аудит <%- include('partials/icon', { name: 'arrow' }) %></span>
+      </a>
+    </div>
+    <ol class="how-steps">
+      <li>
+        <span class="hs-num">1</span>
+        <div class="hs-text"><h3>Бриф или аудит</h3><p>Разбираемся в задаче и процессах</p></div>
+        <span class="hs-ico"><%- include('partials/icon', { name: 'doc' }) %></span>
+      </li>
+      <li>
+        <span class="hs-num">2</span>
+        <div class="hs-text"><h3>Смета в ТЗ</h3><p>Срок и стоимость до начала работ</p></div>
+        <span class="hs-ico"><%- include('partials/icon', { name: 'lock' }) %></span>
+      </li>
+      <li>
+        <span class="hs-num">3</span>
+        <div class="hs-text"><h3>Запуск и гарантия</h3><p>Сопровождаем после запуска</p></div>
+        <span class="hs-ico"><%- include('partials/icon', { name: 'shield' }) %></span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="s s-light slide" id="projects" data-slide="Проекты" data-tone="light">
+  <div class="container s-inner">
+    <div class="s-head">
+      <h2>Проекты</h2>
+      <a class="link-arrow" href="/cases">Все кейсы</a>
+    </div>
+    <div class="proj">
+      <% if (cases.length) { cases.slice(0, 3).forEach(function (c) { %>
+        <%- include('partials/proj-card', { c: c }) %>
+      <% }) } else { %>
+        <div class="empty">Кейсы появятся здесь после публикации в админке.</div>
+      <% } %>
+    </div>
+    <% if (news.length) { %>
+      <a class="news-strip" href="/news/<%= news[0].slug %>">
+        <span class="ns-label">Новости</span>
+        <span class="ns-title"><%= news[0].title %></span>
+        <time datetime="<%= news[0].date %>"><%= formatDate(news[0].date) %></time>
+        <%- include('partials/icon', { name: 'arrow' }) %>
+      </a>
+    <% } %>
+  </div>
+</section>
+
+<nav class="slide-nav" aria-label="Разделы страницы" data-slide-nav>
+  <button type="button" class="sn-arrow" data-dir="-1" aria-label="Предыдущий раздел"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
+  <ol class="sn-dots"></ol>
+  <button type="button" class="sn-arrow" data-dir="1" aria-label="Следующий раздел"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+</nav>
+
+<%- include('partials/foot') %>

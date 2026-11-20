@@ -1,0 +1,22 @@
+<%
+  var _tone = typeof tone !== 'undefined' && tone ? ' ph-' + tone : '';
+  var _badge = typeof badge !== 'undefined' && badge ? badge : '';
+  var _center = typeof center !== 'undefined' && center ? ' ph-center' : '';
+%>
+<section class="ph<%= _tone %><%= _center %>">
+  <div class="container<%= _badge ? ' ph-split' : '' %>">
+    <div>
+      <% if (typeof crumbs !== 'undefined' && crumbs) { %>
+        <nav class="crumbs" aria-label="Навигация">
+          <a href="/">Главная</a>
+          <% crumbs.forEach(function (c) { %><span>/</span><% if (c.href) { %><a href="<%= c.href %>"><%= c.label %></a><% } else { %><span><%= c.label %></span><% } %><% }) %>
+        </nav>
+      <% } %>
+      <% if (typeof tagsHtml !== 'undefined' && tagsHtml) { %><div class="tags"><%- tagsHtml %></div><% } %>
+      <h1><%= heading %></h1>
+      <% if (typeof lead !== 'undefined' && lead) { %><p class="ph-lead"><%= lead %></p><% } %>
+      <% if (typeof actions !== 'undefined' && actions) { %><div class="ph-actions"><%- actions %></div><% } %>
+    </div>
+    <% if (_badge) { %><div class="ph-badge" aria-hidden="true"><%- include('icon', { name: _badge }) %></div><% } %>
+  </div>
+</section>

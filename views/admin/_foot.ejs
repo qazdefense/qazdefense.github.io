@@ -1,0 +1,20 @@
+<% if (typeof bare === 'undefined' || !bare) { %></main><% } %>
+<script>
+  document.querySelectorAll('[data-confirm]').forEach(function (f) {
+    f.addEventListener('submit', function (e) { if (!confirm(f.getAttribute('data-confirm'))) e.preventDefault(); });
+  });
+  document.querySelectorAll('input[type=file][data-preview]').forEach(function (inp) {
+    inp.addEventListener('change', function () {
+      var box = document.getElementById(inp.getAttribute('data-preview'));
+      if (!box) return;
+      box.innerHTML = '';
+      Array.prototype.forEach.call(inp.files, function (f) {
+        var img = document.createElement('img');
+        img.src = URL.createObjectURL(f);
+        box.appendChild(img);
+      });
+    });
+  });
+</script>
+</body>
+</html>

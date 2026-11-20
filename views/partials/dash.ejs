@@ -1,0 +1,75 @@
+<% var d = dashboardDemo; %>
+<div class="dash" data-tabs>
+  <div class="dash-top">
+    <div class="dash-title">
+      <span class="dash-logo"><%- include('icon', { name: 'ledger' }) %></span>
+      <div><strong>Панель владельца</strong><span>Пример отчёта · данные условные</span></div>
+    </div>
+    <span class="dash-live"><span></span>обновлено сегодня</span>
+  </div>
+  <div class="dash-tabs" role="tablist" aria-label="Показатели">
+    <% ['profit', 'margin', 'debts', 'payments'].forEach(function (k, i) { %>
+      <button role="tab" id="dt-<%= k %>" aria-controls="dp-<%= k %>" aria-selected="<%= i === 0 %>" tabindex="<%= i === 0 ? 0 : -1 %>"><%= d[k].tab %></button>
+    <% }) %>
+  </div>
+
+  <div class="dash-panel" role="tabpanel" id="dp-profit" aria-labelledby="dt-profit">
+    <div class="dash-kpi">
+      <span class="dash-label"><%= d.profit.label %></span>
+      <strong><span data-count="<%= d.profit.value %>"><%= fmtNum(d.profit.value) %></span>&nbsp;₸</strong>
+      <span class="delta up"><%= d.profit.delta %></span>
+    </div>
+    <div class="bars">
+      <% d.profit.bars.forEach(function (b, i) { %>
+        <div class="bar <%= i === d.profit.bars.length - 1 ? 'is-last' : '' %>"><i style="--h: <%= b.v %>%"></i><span><%= b.m %></span></div>
+      <% }) %>
+    </div>
+    <div class="dash-stats">
+      <% d.profit.stats.forEach(function (s) { %><div><span><%= s.k %></span><strong><%= s.v %></strong></div><% }) %>
+    </div>
+  </div>
+
+  <div class="dash-panel" role="tabpanel" id="dp-margin" aria-labelledby="dt-margin" hidden>
+    <div class="dash-kpi">
+      <span class="dash-label"><%= d.margin.label %></span>
+      <strong><span data-count="<%= d.margin.value %>" data-decimals="1"><%= String(d.margin.value).replace('.', ',') %></span>%</strong>
+      <span class="delta"><%= d.margin.delta %></span>
+    </div>
+    <div class="hbars">
+      <% d.margin.rows.forEach(function (r) { %>
+        <div class="hbar"><span><%= r.k %></span><div class="hbar-track"><i style="--w: <%= r.v * 2.6 %>%"></i></div><strong><%= r.v %>%</strong></div>
+      <% }) %>
+    </div>
+  </div>
+
+  <div class="dash-panel" role="tabpanel" id="dp-debts" aria-labelledby="dt-debts" hidden>
+    <div class="dash-kpi">
+      <span class="dash-label"><%= d.debts.label %></span>
+      <strong><span data-count="<%= d.debts.value %>"><%= fmtNum(d.debts.value) %></span>&nbsp;₸</strong>
+      <span class="delta"><%= d.debts.delta %></span>
+    </div>
+    <div class="stack" aria-hidden="true">
+      <% d.debts.rows.forEach(function (r) { %><i class="<%= r.tone %>" style="--w: <%= r.p %>%"></i><% }) %>
+    </div>
+    <div class="legend">
+      <% d.debts.rows.forEach(function (r) { %><div><span class="sw <%= r.tone %>"></span><span><%= r.k %></span><strong><%= r.v %></strong></div><% }) %>
+    </div>
+  </div>
+
+  <div class="dash-panel" role="tabpanel" id="dp-payments" aria-labelledby="dt-payments" hidden>
+    <div class="dash-kpi">
+      <span class="dash-label"><%= d.payments.label %></span>
+      <strong><span data-count="<%= d.payments.value %>"><%= fmtNum(d.payments.value) %></span>&nbsp;₸</strong>
+      <span class="delta"><%= d.payments.delta %></span>
+    </div>
+    <div class="weeks">
+      <% d.payments.weeks.forEach(function (w) { var gap = w.out > w.inc; %>
+        <div class="week <%= gap ? 'is-gap' : '' %>">
+          <div class="week-bars"><i class="in" style="--h: <%= w.inc * 3.6 %>%"></i><i class="out" style="--h: <%= w.out * 3.6 %>%"></i></div>
+          <span><%= w.w %></span>
+        </div>
+      <% }) %>
+    </div>
+    <div class="dash-note"><span class="sw bad"></span>Кассовый разрыв 8–14 ноября виден заранее</div>
+  </div>
+</div>

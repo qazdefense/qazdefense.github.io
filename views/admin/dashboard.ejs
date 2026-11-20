@@ -1,0 +1,24 @@
+<%- include('_head') %>
+<div class="a-top"><h1>Панель</h1></div>
+<div class="a-stats">
+  <a class="a-card a-stat" href="/admin/cases"><span>Кейсы</span><strong><%= stats.cases %></strong><em><%= stats.casesDraft %> в черновиках</em></a>
+  <a class="a-card a-stat" href="/admin/news"><span>Новости</span><strong><%= stats.news %></strong><em><%= stats.newsDraft %> в черновиках</em></a>
+  <a class="a-card a-stat" href="/admin/leads"><span>Заявки</span><strong><%= stats.leads %></strong><em><%= unread %> новых</em></a>
+</div>
+<div class="a-quick">
+  <a class="a-btn a-btn-primary" href="/admin/cases/new">+ Добавить кейс</a>
+  <a class="a-btn" href="/admin/news/new">+ Добавить новость</a>
+</div>
+<div class="a-card">
+  <h2>Последние заявки</h2>
+  <% if (leads.length) { %>
+    <table class="a-table">
+      <tbody>
+      <% leads.forEach(function (l) { %>
+        <tr class="<%= l.is_read ? '' : 'unread' %>"><td><%= l.created_at.slice(0, 16) %></td><td><%= l.kind %></td><td><strong><%= l.name %></strong></td><td><%= l.phone %></td></tr>
+      <% }) %>
+      </tbody>
+    </table>
+  <% } else { %><p class="a-muted">Заявок пока нет.</p><% } %>
+</div>
+<%- include('_foot') %>

@@ -1,0 +1,38 @@
+<%- include('partials/head') %>
+<%- include('partials/page-hero', { heading: 'Бесплатный экспресс-аудит 1С', lead: '2 часа работы старшего специалиста. Письменный отчёт с приоритетами остаётся у вас.', crumbs: [{ label: 'Аудит 1С' }], tone: '1c', badge: 'doc', actions: '<a class="btn btn-cta btn-lg" href="#form">Записаться на аудит</a>' }) %>
+
+<section class="section section-tight">
+  <div class="container audit-grid">
+    <div class="audit-info">
+      <div class="card">
+        <h2 class="h-sm">Что проверяем</h2>
+        <ul class="check-list">
+          <% auditChecks.forEach(function (c) { %><li><%= c %></li><% }) %>
+        </ul>
+      </div>
+      <div class="report">
+        <div class="report-head"><span>Пример отчёта</span><strong>Отчёт об экспресс-аудите</strong></div>
+        <div class="finding">
+          <span class="risk risk-high">Находка 01 · высокий риск</span>
+          <p>Резервная копия не проверялась на восстановление</p>
+        </div>
+        <div class="finding">
+          <span class="risk risk-mid">Находка 02 · средний риск</span>
+          <p>ЭСФ расходятся с остатками Виртуального склада</p>
+        </div>
+        <div class="result">→ по каждой находке приоритет и смета</div>
+      </div>
+      <ol class="steps">
+        <li><strong>Заявка</strong><span>Оставляете контакты, мы уточняем конфигурацию и удобное время.</span></li>
+        <li><strong>Аудит</strong><span>Старший специалист проверяет базу, работа занимает 2 часа.</span></li>
+        <li><strong>Отчёт</strong><span>Находки с приоритетами и сметой. Решение о работах остаётся за вами.</span></li>
+      </ol>
+    </div>
+    <div class="form-card" id="form">
+      <h2 class="h-sm">Записаться на аудит</h2>
+      <p class="muted">Ответим и согласуем время.</p>
+      <%- include('partials/lead-form', { action: '/audit', messageLabel: 'Конфигурация и версия 1С, если знаете', submitLabel: 'Записаться на аудит' }) %>
+    </div>
+  </div>
+</section>
+<%- include('partials/foot') %>

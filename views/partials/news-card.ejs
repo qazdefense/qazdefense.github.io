@@ -1,0 +1,7 @@
+<a class="proj-card" href="/news/<%= n.slug %>">
+  <div class="proj-cover"><% if (n.cover) { %><img src="<%= n.cover %>" alt="" loading="lazy"><% } %></div>
+  <div class="proj-body">
+    <time datetime="<%= n.date %>"><%= formatDate(n.date) %></time>
+    <h3><%= n.title %></h3>
+  </div>
+</a>

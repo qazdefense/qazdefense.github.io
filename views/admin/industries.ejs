@@ -1,0 +1,24 @@
+<%- include('_head') %>
+<div class="a-top"><h1>Отрасли</h1></div>
+<p class="a-muted a-intro">Справочник для фильтра кейсов. При удалении отрасли кейсы остаются, но без отрасли.</p>
+<form method="post" action="/admin/industries" class="a-card a-inline">
+  <label>Название<input name="name" required placeholder="Например: Фармацевтика"></label>
+  <label class="a-narrow">Порядок<input name="sort" type="number" value="100"></label>
+  <button class="a-btn a-btn-primary" type="submit">Добавить</button>
+</form>
+<div class="a-card a-pad0">
+  <table class="a-table">
+    <thead><tr><th>Название</th><th>Адрес</th><th>Порядок</th><th></th></tr></thead>
+    <tbody>
+    <% industries.forEach(function (i) { %>
+      <tr>
+        <td><strong><%= i.name %></strong></td>
+        <td class="a-muted">/cases?industry=<%= i.slug %></td>
+        <td class="a-muted"><%= i.sort %></td>
+        <td class="a-right"><form method="post" action="/admin/industries/<%= i.id %>/delete" data-confirm="Удалить отрасль «<%= i.name %>»?"><button class="a-btn a-btn-sm a-btn-ghost" type="submit">Удалить</button></form></td>
+      </tr>
+    <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('_foot') %>

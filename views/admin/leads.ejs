@@ -1,0 +1,25 @@
+<%- include('_head') %>
+<div class="a-top"><h1>Заявки</h1></div>
+<% if (leads.length) { %>
+  <div class="a-leads">
+  <% leads.forEach(function (l) { %>
+    <div class="a-card a-lead <%= l.is_read ? '' : 'unread' %>">
+      <div class="a-lead-head">
+        <span class="a-status <%= l.is_read ? 'draft' : 'published' %>"><%= l.is_read ? 'Обработана' : 'Новая' %></span>
+        <span class="a-muted"><%= l.kind %> · <%= l.created_at.slice(0, 16) %> UTC</span>
+      </div>
+      <div class="a-lead-body">
+        <strong><%= l.name %></strong>
+        <a class="a-link" href="tel:<%= l.phone.replace(/[^\d+]/g, '') %>"><%= l.phone %></a>
+        <% if (l.company) { %><span><%= l.company %></span><% } %>
+      </div>
+      <% if (l.message) { %><p class="a-lead-msg"><%= l.message %></p><% } %>
+      <div class="a-lead-actions">
+        <form method="post" action="/admin/leads/<%= l.id %>/read"><input type="hidden" name="read" value="<%= l.is_read ? 0 : 1 %>"><button class="a-btn a-btn-sm" type="submit"><%= l.is_read ? 'Вернуть в новые' : 'Отметить обработанной' %></button></form>
+        <form method="post" action="/admin/leads/<%= l.id %>/delete" data-confirm="Удалить заявку?"><button class="a-btn a-btn-sm a-btn-ghost" type="submit">Удалить</button></form>
+      </div>
+    </div>
+  <% }) %>
+  </div>
+<% } else { %><div class="a-card"><p class="a-empty">Заявок пока нет. Они появятся здесь после отправки форм «Контакты» и «Аудит 1С».</p></div><% } %>
+<%- include('_foot') %>

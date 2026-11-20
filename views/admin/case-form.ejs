@@ -1,0 +1,87 @@
+<%- include('_head') %>
+<%
+  var dirs = [].concat(item.directions || []);
+  var sols = [].concat(item.solutions || []).map(function (s) { return String(s).trim(); }).filter(Boolean).join(', ');
+  var action = item.id ? '/admin/cases/' + item.id : '/admin/cases/new';
+%>
+<div class="a-top">
+  <div><a class="a-back" href="/admin/cases">← Кейсы</a><h1><%= item.id ? item.title : 'Новый кейс' %></h1></div>
+  <% if (item.id && item.status === 'published') { %><a class="a-btn" href="/cases/<%= item.slug %>" target="_blank" rel="noopener">Открыть на сайте ↗</a><% } %>
+</div>
+<% if (error) { %><div class="a-error"><%= error %></div><% } %>
+
+<form method="post" action="<%= action %>" enctype="multipart/form-data" class="a-form">
+  <div class="a-form-main">
+    <div class="a-card">
+      <label>Заголовок *<input name="title" value="<%= item.title || '' %>" required placeholder="Например: Переход на 1С 8.3 в сети супермаркетов"></label>
+      <label>Кратко для карточки<textarea name="summary" rows="2" placeholder="1–2 предложения о проекте"><%= item.summary || '' %></textarea></label>
+      <label>Результат одной строкой <span class="a-hint">выводится как «→ …» на карточке</span><input name="result_line" value="<%= item.result_line || '' %>" placeholder="например: закрытие месяца за 3 дня вместо 20"></label>
+    </div>
+    <div class="a-card">
+      <p class="a-hint a-hint-block">Тексты поддерживают Markdown: пустая строка — новый абзац, «- » — список, **жирный**.</p>
+      <label>Задача<textarea name="task" rows="6"><%= item.task || '' %></textarea></label>
+      <label>Решение<textarea name="solution" rows="7"><%= item.solution || '' %></textarea></label>
+      <label>Результат<textarea name="result" rows="6"><%= item.result || '' %></textarea></label>
+    </div>
+    <div class="a-card">
+      <h2>Картинки</h2>
+      <div class="a-two">
+        <div>
+          <span class="a-label">Обложка</span>
+          <% if (item.cover) { %>
+            <div class="a-imgs"><figure><img src="<%= item.cover %>" alt=""><label class="a-check"><input type="checkbox" name="remove_cover" value="1"> удалить</label></figure></div>
+          <% } %>
+          <input type="file" name="cover_file" accept="image/jpeg,image/png,image/webp" data-preview="pv-cover">
+          <div class="a-imgs a-preview" id="pv-cover"></div>
+        </div>
+        <div>
+          <span class="a-label">Галерея</span>
+          <% if ((item.gallery || []).length) { %>
+            <div class="a-imgs">
+              <% item.gallery.forEach(function (g) { %><figure><img src="<%= g %>" alt=""><label class="a-check"><input type="checkbox" name="remove_gallery" value="<%= g %>"> удалить</label></figure><% }) %>
+            </div>
+          <% } %>
+          <input type="file" name="gallery_files" accept="image/jpeg,image/png,image/webp" multiple data-preview="pv-gallery">
+          <div class="a-imgs a-preview" id="pv-gallery"></div>
+        </div>
+      </div>
+      <p class="a-hint a-hint-block">JPG, PNG или WebP до 8 МБ.</p>
+    </div>
+  </div>
+
+  <div class="a-form-side">
+    <div class="a-card a-sticky">
+      <span class="a-label">Статус</span>
+      <div class="a-seg">
+        <label><input type="radio" name="status" value="draft" <%= item.status !== 'published' ? 'checked' : '' %>><span>Черновик</span></label>
+        <label><input type="radio" name="status" value="published" <%= item.status === 'published' ? 'checked' : '' %>><span>Опубликован</span></label>
+      </div>
+      <button class="a-btn a-btn-primary a-block" type="submit">Сохранить</button>
+    </div>
+    <div class="a-card">
+      <label>Клиент <span class="a-hint">можно оставить пустым</span><input name="client" value="<%= item.client || '' %>"></label>
+      <label>Отрасль
+        <select name="industry_id">
+          <option value="">— не выбрана —</option>
+          <% industries.forEach(function (i) { %><option value="<%= i.id %>" <%= Number(item.industry_id) === i.id ? 'selected' : '' %>><%= i.name %></option><% }) %>
+        </select>
+      </label>
+      <span class="a-label">Направления</span>
+      <div class="a-checks">
+        <% directions.forEach(function (d) { %>
+          <label class="a-check"><input type="checkbox" name="directions" value="<%= d.slug %>" <%= dirs.indexOf(d.slug) >= 0 ? 'checked' : '' %>> <%= d.name %></label>
+        <% }) %>
+      </div>
+      <label>Использованные решения <span class="a-hint">через запятую</span><input name="solutions" value="<%= sols %>" placeholder="1С:УТ, Kaspi Pay, ТСД"></label>
+      <label>Адрес страницы <span class="a-hint">латиница, создаётся сам</span><input name="slug" value="<%= item.slug || '' %>"></label>
+      <label>Порядок <span class="a-hint">меньше — выше в списке</span><input name="sort" type="number" value="<%= item.sort == null ? 100 : item.sort %>"></label>
+    </div>
+  </div>
+</form>
+
+<% if (item.id) { %>
+  <form method="post" action="/admin/cases/<%= item.id %>/delete" class="a-danger" data-confirm="Удалить кейс без возможности восстановления?">
+    <button type="submit" class="a-btn a-btn-danger">Удалить кейс</button>
+  </form>
+<% } %>
+<%- include('_foot') %>
