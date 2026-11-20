@@ -1,18 +1,4 @@
 <%- include('partials/head') %>
-<%
-  var digits = String(contacts.phone || '').replace(/[^\d+]/g, '');
-  var hasPhone = digits.replace('+', '').length >= 10;
-  var wa = String(contacts.whatsapp || '').replace(/\D/g, '') || (hasPhone ? digits.replace('+', '') : '');
-  var tg = String(contacts.telegram || '');
-  var hasTg = /^@?[A-Za-z0-9_]{5,}$/.test(tg);
-  var hasMail = /@.+\./.test(String(contacts.email || ''));
-  var channels = [
-    { cls: 'ch-wa', label: 'WhatsApp', value: contacts.phone, href: wa ? 'https://wa.me/' + wa : '' },
-    { cls: 'ch-tg', label: 'Telegram', value: contacts.telegram, href: hasTg ? 'https://t.me/' + tg.replace('@', '') : '' },
-    { cls: 'ch-tel', label: 'Телефон', value: contacts.phone, href: hasPhone ? 'tel:' + digits : '' },
-    { cls: 'ch-mail', label: 'E-mail', value: contacts.email, href: hasMail ? 'mailto:' + contacts.email : '' },
-  ];
-%>
 <%- include('partials/page-hero', { heading: 'Контакты', crumbs: [{ label: 'Контакты' }], lead: 'Работаем по всему Казахстану. Напишите удобным способом или оставьте заявку.' }) %>
 
 <section class="pg">

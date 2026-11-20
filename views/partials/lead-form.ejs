@@ -1,3 +1,14 @@
+<% if (typeof isStatic !== 'undefined' && isStatic) { %>
+  <div class="static-contact">
+    <p>Напишите нам, ответим и уточним задачу.</p>
+    <div class="static-buttons">
+      <% channels.forEach(function (c) { if (!c.href) return; %>
+        <a class="sbtn <%= c.cls %>" href="<%= c.href %>"<% if (c.href.indexOf('http') === 0) { %> target="_blank" rel="noopener"<% } %>><%= c.label %></a>
+      <% }) %>
+    </div>
+    <% if (!channels.some(function (c) { return c.href; })) { %><p class="muted">Контакты скоро появятся здесь.</p><% } %>
+  </div>
+<% } else { %>
 <% if (sent) { %>
   <div class="form-done" role="status">
     <h3>Заявка отправлена</h3>
@@ -27,4 +38,6 @@
     <button class="btn btn-primary btn-block" type="submit"><%= submitLabel %></button>
     <p class="form-note">Отправляя заявку, вы соглашаетесь на обработку контактных данных для связи с вами.</p>
   </form>
+<% } %>
+
 <% } %>

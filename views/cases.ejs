@@ -32,8 +32,9 @@
     </div>
 
     <% if (cases.length) { %>
-      <p class="count"><%= cases.length %> <%= cases.length % 10 === 1 && cases.length % 100 !== 11 ? 'кейс' : (cases.length % 10 >= 2 && cases.length % 10 <= 4 && (cases.length % 100 < 10 || cases.length % 100 >= 20) ? 'кейса' : 'кейсов') %></p>
-      <div class="proj-grid"><% cases.forEach(function (c) { %><%- include('partials/case-tile', { c: c }) %><% }) %></div>
+      <p class="count" data-case-count><%= cases.length %> <%= cases.length % 10 === 1 && cases.length % 100 !== 11 ? 'кейс' : (cases.length % 10 >= 2 && cases.length % 10 <= 4 && (cases.length % 100 < 10 || cases.length % 100 >= 20) ? 'кейса' : 'кейсов') %></p>
+      <div class="proj-grid" data-case-grid><% cases.forEach(function (c) { %><div class="case-cell" data-industry="<%= c.industry_slug || '' %>" data-dirs="<%= c.directions.join(' ') %>"><%- include('partials/case-tile', { c: c }) %></div><% }) %></div>
+      <div class="empty" data-case-empty hidden><p>По выбранным условиям кейсов пока нет.</p><a class="btn btn-outline btn-sm" href="/cases/">Показать все кейсы</a></div>
     <% } else { %>
       <div class="empty">
         <p>По выбранным условиям кейсов пока нет.</p>

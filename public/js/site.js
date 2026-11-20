@@ -199,3 +199,37 @@
     });
   });
 })();
+
+// Статическая версия (GitHub Pages): фильтр кейсов работает в браузере по параметрам адреса
+(function () {
+  'use strict';
+  if (!document.body.hasAttribute('data-static')) return;
+  var grid = document.querySelector('[data-case-grid]');
+  if (!grid) return;
+  var params = new URLSearchParams(location.search);
+  var ind = params.get('industry') || '';
+  var dir = params.get('direction') || '';
+  var shown = 0;
+  grid.querySelectorAll('.case-cell').forEach(function (cell) {
+    var ok = (!ind || cell.getAttribute('data-industry') === ind) &&
+             (!dir || (' ' + cell.getAttribute('data-dirs') + ' ').indexOf(' ' + dir + ' ') >= 0);
+    cell.hidden = !ok;
+    if (ok) shown++;
+  });
+  document.querySelectorAll('.filters .chip').forEach(function (chip) {
+    var u = new URL(chip.href, location.href);
+    var row = chip.closest('.filter-row');
+    var isInd = row && row.querySelector('.filter-label').textContent.indexOf('Отрасль') === 0;
+    var mine = isInd ? (u.searchParams.get('industry') || '') === ind : (u.searchParams.get('direction') || '') === dir;
+    chip.classList.toggle('is-active', mine);
+  });
+  var count = document.querySelector('[data-case-count]');
+  var empty = document.querySelector('[data-case-empty]');
+  if (count) {
+    var n = shown, m10 = n % 10, m100 = n % 100;
+    var word = m10 === 1 && m100 !== 11 ? 'кейс' : (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20) ? 'кейса' : 'кейсов');
+    count.textContent = n + ' ' + word;
+    count.hidden = n === 0;
+  }
+  if (empty) empty.hidden = shown !== 0;
+})();

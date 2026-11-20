@@ -14,7 +14,7 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <script>document.documentElement.classList.add('js')</script>
 </head>
-<body class="<%= path === '/' ? 'is-home' : '' %>">
+<body class="<%= path === '/' ? 'is-home' : '' %>"<%- (typeof isStatic !== 'undefined' && isStatic) ? ' data-static' : '' %>>
 <a class="skip" href="#main">К содержанию</a>
 <header class="site-header" data-header>
   <div class="container header-row">

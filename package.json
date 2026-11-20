@@ -9,7 +9,9 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
-    "test": "node --test"
+    "test": "node --test",
+    "build": "node src/build-static.js",
+    "publish": "node scripts/publish.js"
   },
   "repository": {
     "type": "git",

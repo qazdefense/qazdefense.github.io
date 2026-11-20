@@ -11,3 +11,4 @@ uploads/
 /ops/
 # служебные файлы Claude
 /.claude/
+dist/

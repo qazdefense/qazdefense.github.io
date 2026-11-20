@@ -17,7 +17,25 @@ function formatDate(iso) {
   return m ? `${Number(m[3])} ${MONTHS[Number(m[2]) - 1]} ${m[1]}` : '';
 }
 
-function createApp({ repo, uploadsDir, admin, contacts, siteUrl }) {
+// Каналы связи для страницы контактов и статической версии сайта.
+// Ссылка появляется, только когда контакт заполнен настоящим значением.
+function buildChannels(contacts) {
+  const c = contacts || {};
+  const digits = String(c.phone || '').replace(/[^\d+]/g, '');
+  const hasPhone = digits.replace('+', '').length >= 10;
+  const wa = String(c.whatsapp || '').replace(/\D/g, '') || (hasPhone ? digits.replace('+', '') : '');
+  const tg = String(c.telegram || '');
+  const hasTg = /^@?[A-Za-z0-9_]{5,}$/.test(tg);
+  const hasMail = /@.+\./.test(String(c.email || ''));
+  return [
+    { cls: 'ch-wa', label: 'WhatsApp', value: c.phone, href: wa ? 'https://wa.me/' + wa : '' },
+    { cls: 'ch-tg', label: 'Telegram', value: c.telegram, href: hasTg ? 'https://t.me/' + tg.replace('@', '') : '' },
+    { cls: 'ch-tel', label: 'Телефон', value: c.phone, href: hasPhone ? 'tel:' + digits : '' },
+    { cls: 'ch-mail', label: 'E-mail', value: c.email, href: hasMail ? 'mailto:' + c.email : '' },
+  ];
+}
+
+function createApp({ repo, uploadsDir, admin, contacts, siteUrl, staticMode = false }) {
   fs.mkdirSync(uploadsDir, { recursive: true });
   const app = express();
   const root = path.resolve(__dirname, '..');
@@ -40,6 +58,8 @@ function createApp({ repo, uploadsDir, admin, contacts, siteUrl }) {
     res.locals.formatDate = formatDate;
     res.locals.dirName = (slug) => (content.directions.find((d) => d.slug === slug) || {}).name || slug;
     res.locals.lang = 'ru';
+    res.locals.isStatic = staticMode;
+    res.locals.channels = buildChannels(contacts);
     res.locals.v = ASSET_V;
     res.locals.fmtNum = (n) => Number(n).toLocaleString('ru-RU').replace(/\s/g, ' ');
     next();
@@ -58,4 +78,4 @@ function createApp({ repo, uploadsDir, admin, contacts, siteUrl }) {
   return app;
 }
 
-module.exports = { createApp, formatDate };
+module.exports = { createApp, formatDate, buildChannels };

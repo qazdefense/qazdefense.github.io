@@ -343,3 +343,12 @@ a.channel:hover .tile-go { transform: rotate(45deg); }
 }
 .ph-1c .tag { background: rgba(19, 37, 74, .1); color: var(--navy); }
 .ph-1c .tag-ind { background: var(--white); color: var(--accent); }
+
+/* статическая версия: кнопки связи вместо формы */
+.static-contact p { color: var(--muted); margin-bottom: 14px; }
+.static-buttons { display: grid; gap: 10px; }
+.sbtn { height: 54px; display: flex; align-items: center; justify-content: center; border-radius: 14px; font-weight: 700; color: var(--white); transition: transform .2s var(--ease); }
+.sbtn:hover { transform: translateY(-2px); }
+.sbtn.ch-wa { background: #16A34A; } .sbtn.ch-tg { background: #1E8FD8; } .sbtn.ch-tel { background: var(--navy); } .sbtn.ch-mail { background: var(--accent); }
+.case-cell { display: contents; }
+.case-cell[hidden] { display: none; }
