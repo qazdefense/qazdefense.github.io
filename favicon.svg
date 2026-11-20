@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 70 425 370" role="img" aria-label="QazDefense">
+  <g stroke-linejoin="round" stroke-width="8">
+    <polygon fill="#1A5CF0" stroke="#1A5CF0" points="52,172 102,80 398,80 255,118 125,152"/>
+    <polygon fill="#1A5CF0" stroke="#1A5CF0" points="52,172 155,280 303,430 202,430"/>
+    <polygon fill="#1A5CF0" stroke="#1A5CF0" points="398,80 453,172 303,430 345,285 385,152"/>
+    <polygon fill="#FFC23E" stroke="#FFC23E" points="255,118 398,80 385,152"/>
+    <polygon fill="#FFC23E" stroke="#FFC23E" points="52,172 125,152 155,280"/>
+    <polygon fill="#FFC23E" stroke="#FFC23E" points="255,378 345,285 303,430"/>
+  </g>
+</svg>
