@@ -9,7 +9,7 @@
 .s-head .link-arrow { font-size: 16px; }
 
 /* шапка поверх синего экрана */
-.is-home main { margin-top: -76px; }
+.is-home main { margin-top: -64px; }
 .is-home .site-header:not(.is-scrolled) { background: transparent; backdrop-filter: none; }
 .is-home .site-header:not(.is-scrolled) .nav > a,
 .is-home .site-header:not(.is-scrolled) .nav-item > a { color: var(--white); }

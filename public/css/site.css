@@ -76,8 +76,7 @@ p { margin: 0; }
   border-bottom: 1px solid transparent; transition: border-color .2s, box-shadow .2s;
 }
 .site-header.is-scrolled { border-bottom-color: var(--line); box-shadow: 0 4px 20px rgba(19, 37, 74, .05); }
-.header-row { display: flex; align-items: center; gap: 32px; height: 76px; transition: height .2s var(--ease); }
-.is-scrolled .header-row { height: 64px; }
+.header-row { display: flex; align-items: center; gap: 32px; height: 64px; }
 .logo { display: inline-flex; align-items: center; gap: 10px; font: 800 18px/1 var(--font-head); color: var(--navy); letter-spacing: -0.02em; flex-shrink: 0; }
 .logo-mark {
   width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
@@ -440,8 +439,7 @@ a.chip:hover { border-color: var(--accent); color: var(--accent); }
   .sub span { display: none; }
   .nav > a.nav-cta { display: flex; margin-top: 20px; border: 0; border-radius: 12px; color: var(--white); font-size: 16px; padding: 0 24px; }
   .sub a { padding: 8px 4px; }
-  .header-row, .is-scrolled .header-row { height: 64px; }
-  .header-actions { margin-left: auto; }
+  .header-row,   .header-actions { margin-left: auto; }
   .hero-grid, .split { grid-template-columns: 1fr; gap: 32px; }
   .tabs, .tabs-industries { grid-template-columns: 1fr; }
   .tab-list { flex-direction: row; overflow-x: auto; scrollbar-width: none; gap: 8px; margin: 0 -24px; padding: 0 24px; }

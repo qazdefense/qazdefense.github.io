@@ -7,7 +7,7 @@
   <meta name="description" content="<%= typeof description !== 'undefined' ? description : 'QazDefense: автоматизация учёта и процессов, 1С, ИТ-инфраструктура и защита, сайты и приложения, ИИ-агенты, дизайн и маркетинг. Работаем по всему Казахстану.' %>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800<%= lang === 'kk' ? '&family=Onest:wght@600;700;800' : '' %>&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/site.css?v=<%= v %>">
   <link rel="stylesheet" href="/css/ui.css?v=<%= v %>">
   <% if (path === '/') { %><link rel="stylesheet" href="/css/home.css?v=<%= v %>"><% } %>
@@ -39,6 +39,10 @@
       <a class="btn btn-primary nav-cta" href="/contacts#form">Обсудить задачу</a>
     </nav>
     <div class="header-actions">
+      <div class="lang-switch" role="group" aria-label="Язык сайта">
+        <a href="/" lang="ru" class="<%= lang === 'ru' ? 'is-active' : '' %>" <%- lang === 'ru' ? 'aria-current="true"' : '' %>>РУС</a>
+        <a href="/kz" lang="kk" class="<%= lang === 'kk' ? 'is-active' : '' %>" <%- lang === 'kk' ? 'aria-current="true"' : '' %>>ҚАЗ</a>
+      </div>
       <a class="btn btn-primary btn-sm" href="/contacts#form">Обсудить задачу</a>
       <button class="burger" type="button" aria-controls="nav" aria-expanded="false" aria-label="Меню" data-burger><span></span><span></span></button>
     </div>

@@ -89,7 +89,7 @@ module.exports = function publicRoutes({ repo }) {
   leadPage('audit', 'audit', 'Бесплатный экспресс-аудит 1С');
   leadPage('contacts', 'contacts', 'Контакты');
 
-  r.get('/kz', (req, res) => res.render('kz', { title: 'Қазақша нұсқа' }));
+  r.get('/kz', (req, res) => { res.locals.lang = 'kk'; res.render('kz', { title: 'Қазақша нұсқа' }); });
 
   return r;
 };
