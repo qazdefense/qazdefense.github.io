@@ -1,0 +1,15 @@
+<%
+  var _tones = { '1c': 't-1c', it: 't-it', web: 't-web', ai: 't-ai', design: 't-design' };
+  var _dirs = c.directions || [];
+  var _tone = _tones[_dirs[0]] || 't-web';
+%>
+<a class="ctile <%= _tone %><%= c.cover ? ' has-cover' : '' %>" href="/cases/<%= c.slug %>">
+  <% if (c.cover) { %><div class="ctile-cover"><img src="<%= c.cover %>" alt="" loading="lazy"></div><% } %>
+  <div class="ctile-tags">
+    <% if (c.industry_name) { %><span><%= c.industry_name %></span><% } %>
+    <% if (_dirs[0]) { %><span><%= dirName(_dirs[0]) %></span><% } %>
+  </div>
+  <h3><%= c.title %></h3>
+  <% if (c.result_line) { %><div class="ctile-result"><span class="ctile-arrow">→</span><span><%= c.result_line %></span></div><% } %>
+  <span class="tile-go" aria-hidden="true"><%- include('icon', { name: 'arrow' }) %></span>
+</a>

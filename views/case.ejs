@@ -1,51 +1,59 @@
 <%- include('partials/head') %>
 <%
+  var tones = { '1c': '1c', it: 'it', web: '', ai: 'ai', design: 'design' };
   var tagsHtml = '';
   if (item.industry_name) tagsHtml += '<a class="tag tag-ind" href="/cases?industry=' + item.industry_slug + '">' + escapeFn(item.industry_name) + '</a>';
   item.directions.forEach(function (d) { tagsHtml += '<a class="tag" href="/cases?direction=' + d + '">' + escapeFn(dirName(d)) + '</a>'; });
+  var heroResult = item.result_line ? '<div class="hero-result"><span>Результат</span><strong>' + escapeFn(item.result_line) + '</strong></div>' : '';
 %>
-<%- include('partials/page-hero', { heading: item.title, lead: item.summary, crumbs: [{ label: 'Кейсы', href: '/cases' }, { label: item.title }], tagsHtml: tagsHtml }) %>
+<%- include('partials/page-hero', { heading: item.title, lead: item.summary, crumbs: [{ label: 'Кейсы', href: '/cases' }, { label: item.title }], tagsHtml: tagsHtml, tone: tones[item.directions[0]] || '', actions: heroResult }) %>
 
-<section class="section section-tight">
-  <div class="container case-layout">
-    <div class="case-main">
-      <% if (item.cover) { %><div class="case-hero-img"><img src="<%= item.cover %>" alt=""></div><% } %>
-      <div class="tsr">
-        <article class="tsr-block"><span class="tsr-label">Задача</span><div class="prose"><%- md(item.task) %></div></article>
-        <article class="tsr-block"><span class="tsr-label">Решение</span><div class="prose"><%- md(item.solution) %></div></article>
-        <article class="tsr-block tsr-result"><span class="tsr-label">Результат</span><div class="prose"><%- md(item.result) %></div></article>
-      </div>
-      <% if (item.gallery.length) { %>
-        <h2 class="h-sm">Материалы проекта</h2>
-        <div class="gallery" data-gallery>
-          <% item.gallery.forEach(function (g) { %><a href="<%= g %>" class="gallery-item"><img src="<%= g %>" alt="" loading="lazy"></a><% }) %>
-        </div>
-      <% } %>
+<section class="pg">
+  <div class="container">
+    <% if (item.cover) { %><div class="case-cover"><img src="<%= item.cover %>" alt=""></div><% } %>
+    <div class="tsr3">
+      <article class="tsr3-card">
+        <span class="tsr3-ico"><%- include('partials/icon', { name: 'doc' }) %></span>
+        <h2>Задача</h2>
+        <div class="prose"><%- md(item.task) %></div>
+      </article>
+      <article class="tsr3-card">
+        <span class="tsr3-ico"><%- include('partials/icon', { name: 'code' }) %></span>
+        <h2>Решение</h2>
+        <div class="prose"><%- md(item.solution) %></div>
+      </article>
+      <article class="tsr3-card is-result">
+        <span class="tsr3-ico"><%- include('partials/icon', { name: 'check' }) %></span>
+        <h2>Результат</h2>
+        <div class="prose"><%- md(item.result) %></div>
+      </article>
     </div>
-    <aside class="case-side">
-      <div class="side-card">
-        <dl class="facts">
-          <% if (item.client) { %><div><dt>Клиент</dt><dd><%= item.client %></dd></div><% } %>
-          <% if (item.industry_name) { %><div><dt>Отрасль</dt><dd><%= item.industry_name %></dd></div><% } %>
-          <% if (item.directions.length) { %><div><dt>Направления</dt><dd><%= item.directions.map(dirName).join(', ') %></dd></div><% } %>
-          <% if (item.solutions.length) { %><div><dt>Использованные решения</dt><dd><div class="chips"><% item.solutions.forEach(function (s) { %><span class="chip"><%= s %></span><% }) %></div></dd></div><% } %>
-          <% if (item.result_line) { %><div><dt>Итог</dt><dd class="result">→ <%= item.result_line %></dd></div><% } %>
-        </dl>
+
+    <div class="case-facts">
+      <% if (item.client) { %><div><span>Клиент</span><strong><%= item.client %></strong></div><% } %>
+      <% if (item.industry_name) { %><div><span>Отрасль</span><strong><%= item.industry_name %></strong></div><% } %>
+      <% if (item.solutions.length) { %><div class="cf-wide"><span>Использованные решения</span><div class="chip-row"><% item.solutions.forEach(function (s) { %><span><%= s %></span><% }) %></div></div><% } %>
+    </div>
+
+    <% if (item.gallery.length) { %>
+      <div class="pg-head" style="margin-top: 40px"><h2>Материалы проекта</h2></div>
+      <div class="gallery" data-gallery>
+        <% item.gallery.forEach(function (g) { %><a href="<%= g %>" class="gallery-item"><img src="<%= g %>" alt="" loading="lazy"></a><% }) %>
       </div>
-      <div class="side-card side-cta">
-        <h3>Похожая задача?</h3>
-        <p>Обсудим за 15 минут и предложим формат работы.</p>
-        <a class="btn btn-primary btn-block" href="/contacts#form">Обсудить задачу</a>
-      </div>
-    </aside>
+    <% } %>
+
+    <a class="cta-bar" href="/contacts#form">
+      <span class="cta-bar-text"><strong>Похожая задача?</strong>Обсудим за 15 минут и предложим формат работы</span>
+      <span class="btn btn-cta">Обсудить задачу <%- include('partials/icon', { name: 'arrow' }) %></span>
+    </a>
   </div>
 </section>
 
 <% if (more.length) { %>
-<section class="section section-tint section-tight">
+<section class="pg">
   <div class="container">
-    <div class="section-head"><div><h2>Другие кейсы</h2></div><a class="link-arrow" href="/cases">Все кейсы</a></div>
-    <div class="proj-grid"><% more.forEach(function (c) { %><%- include('partials/proj-card', { c: c }) %><% }) %></div>
+    <div class="pg-head"><h2>Другие кейсы</h2><a class="link-arrow" href="/cases">Все кейсы</a></div>
+    <div class="proj-grid"><% more.forEach(function (c) { %><%- include('partials/case-tile', { c: c }) %><% }) %></div>
   </div>
 </section>
 <% } %>

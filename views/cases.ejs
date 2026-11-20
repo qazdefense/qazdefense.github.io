@@ -33,7 +33,7 @@
 
     <% if (cases.length) { %>
       <p class="count"><%= cases.length %> <%= cases.length % 10 === 1 && cases.length % 100 !== 11 ? 'кейс' : (cases.length % 10 >= 2 && cases.length % 10 <= 4 && (cases.length % 100 < 10 || cases.length % 100 >= 20) ? 'кейса' : 'кейсов') %></p>
-      <div class="proj-grid"><% cases.forEach(function (c) { %><%- include('partials/proj-card', { c: c }) %><% }) %></div>
+      <div class="proj-grid"><% cases.forEach(function (c) { %><%- include('partials/case-tile', { c: c }) %><% }) %></div>
     <% } else { %>
       <div class="empty">
         <p>По выбранным условиям кейсов пока нет.</p>

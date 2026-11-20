@@ -131,7 +131,7 @@ test('кейс из админки с картинкой появляется в
     assert.equal(res.status, 302);
     const list = await (await fetch(base + '/cases?direction=ai')).text();
     assert.ok(list.includes('Новый кейс из админки'));
-    assert.ok(list.includes('→ проверочный результат'));
+    assert.ok(list.includes('ctile-result') && list.includes('проверочный результат'));
     const page = await (await fetch(base + '/cases/novyy-keys-iz-adminki')).text();
     assert.ok(page.includes('<strong>жирно</strong>'));
     const cover = /src="(\/uploads\/[^"]+)"/.exec(page)[1];

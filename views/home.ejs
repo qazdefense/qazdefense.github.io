@@ -72,7 +72,7 @@
     </div>
     <div class="proj">
       <% if (cases.length) { cases.slice(0, 3).forEach(function (c) { %>
-        <%- include('partials/proj-card', { c: c }) %>
+        <%- include('partials/case-tile', { c: c }) %>
       <% }) } else { %>
         <div class="empty">Кейсы появятся здесь после публикации в админке.</div>
       <% } %>

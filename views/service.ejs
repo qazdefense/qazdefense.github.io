@@ -39,7 +39,7 @@
   <div class="container">
     <div class="pg-head"><h2>Кейсы</h2><a class="link-arrow" href="/cases?direction=<%= dir.slug %>">Все кейсы направления</a></div>
     <% if (cases.length) { %>
-      <div class="proj-grid"><% cases.forEach(function (c) { %><%- include('partials/proj-card', { c: c }) %><% }) %></div>
+      <div class="proj-grid"><% cases.forEach(function (c) { %><%- include('partials/case-tile', { c: c }) %><% }) %></div>
     <% } else { %>
       <div class="empty">Кейсы по этому направлению появятся после публикации в админке.</div>
     <% } %>

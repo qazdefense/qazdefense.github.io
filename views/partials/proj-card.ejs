@@ -1,8 +1,0 @@
-<a class="proj-card" href="/cases/<%= c.slug %>">
-  <div class="proj-cover"><% if (c.cover) { %><img src="<%= c.cover %>" alt="" loading="lazy"><% } %></div>
-  <div class="proj-body">
-    <% if (c.industry_name) { %><span class="tag tag-ind"><%= c.industry_name %></span><% } %>
-    <h3><%= c.title %></h3>
-    <% if (c.result_line) { %><span class="result">→ <%= c.result_line %></span><% } %>
-  </div>
-</a>

@@ -1,39 +1,24 @@
 <%- include('partials/head') %>
-<%- include('partials/page-hero', { heading: 'Отраслевые решения', eyebrow: '', crumbs: [{ label: 'Отрасли' }], lead: 'Подбираем конфигурацию 1С под отрасль. Базовый контур для всех: 1С:Бухгалтерия для Казахстана и 1С:ЗУП.' }) %>
-
-<section class="section section-tight">
+<%- include('partials/page-hero', { heading: 'Отраслевые решения', crumbs: [{ label: 'Отрасли' }], lead: 'Подбираем решение под отрасль: конфигурацию учёта, оборудование и интеграции.' }) %>
+<% var tones = ['t-web', 't-1c', 't-it', 't-ai', 't-design']; %>
+<section class="pg">
   <div class="container">
-    <div class="tabs tabs-industries" data-tabs>
-      <div class="tab-list" role="tablist" aria-label="Отрасли">
-        <% industrySolutions.forEach(function (s, i) { %>
-          <button class="tab" role="tab" id="tab-ind-<%= i %>" aria-controls="panel-ind-<%= i %>" aria-selected="<%= i === 0 %>" tabindex="<%= i === 0 ? 0 : -1 %>">
-            <span class="tab-text"><strong><%= s.name %></strong><span><%= s.config %></span></span>
-          </button>
-        <% }) %>
-      </div>
+    <div class="ind-tiles">
       <% industrySolutions.forEach(function (s, i) {
            var ind = industries.find(function (x) { return x.name === s.caseIndustry; }); %>
-        <div class="tab-panel ind-panel" role="tabpanel" id="panel-ind-<%= i %>" aria-labelledby="tab-ind-<%= i %>" <%= i === 0 ? '' : 'hidden' %>>
-          <div class="ind-img"><img src="<%= s.image %>" alt="" loading="lazy"></div>
-          <div class="ind-info">
-            <span class="chip chip-accent"><%= s.config %></span>
-            <h2><%= s.name %></h2>
-            <dl class="facts">
-              <div><dt>Что автоматизируем</dt><dd><%= s.what %></dd></div>
-              <div><dt>Что видит владелец</dt><dd class="result">→ <%= s.result %></dd></div>
-            </dl>
-            <div class="panel-actions">
-              <a class="btn btn-primary btn-sm" href="/audit">Аудит 1С для отрасли</a>
-              <% if (ind) { %><a class="link-arrow" href="/cases?industry=<%= ind.slug %>">Кейсы отрасли</a><% } %>
-            </div>
-          </div>
-        </div>
+        <a class="ctile ind-tile <%= tones[i % tones.length] %>" href="<%= ind ? '/cases?industry=' + ind.slug : '/cases' %>">
+          <div class="ctile-tags"><span><%= s.config %></span></div>
+          <h3><%= s.name %></h3>
+          <p class="ind-what"><%= s.what %></p>
+          <div class="ctile-result"><span class="ctile-arrow">→</span><span><%= s.result %></span></div>
+          <span class="tile-go" aria-hidden="true"><%- include('partials/icon', { name: 'arrow' }) %></span>
+        </a>
       <% }) %>
-    </div>
-
-    <div class="config-row">
-      <span class="strip-label">Также работаем</span>
-      <div class="chips"><% otherIndustries.forEach(function (x) { %><span class="chip"><%= x %></span><% }) %></div>
+      <div class="ind-more">
+        <h3>Также работаем</h3>
+        <div class="chip-row"><% otherIndustries.forEach(function (x) { %><span><%= x %></span><% }) %></div>
+        <a class="btn btn-cta" href="/contacts#form">Обсудить задачу <%- include('partials/icon', { name: 'arrow' }) %></a>
+      </div>
     </div>
   </div>
 </section>
