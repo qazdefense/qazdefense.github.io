@@ -1,0 +1,56 @@
+<%- include('partials/head') %>
+<% var arrow = include('partials/icon', { name: 'arrow' }); %>
+
+<section class="cat-hero">
+  <div class="container">
+    <nav class="crumbs" aria-label="Навигация"><a href="/">Главная</a><span>/</span><span>Решения на 1С</span></nav>
+    <div class="cat-hero-row">
+      <div>
+        <h1>Решения на 1С</h1>
+        <p>Конфигурации для Казахстана, отраслевые программы, обмены и доработки. <%= total %> решений в каталоге.</p>
+      </div>
+      <label class="cat-search">
+        <span class="sr-only">Поиск по каталогу</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input type="search" placeholder="Например: склад, Kaspi, зарплата" data-cat-search autocomplete="off">
+      </label>
+    </div>
+  </div>
+</section>
+
+<nav class="cat-nav" aria-label="Разделы каталога">
+  <div class="container">
+    <% groups.forEach(function (g) { %><a href="#<%= g.key %>"><%= g.name %> <span><%= g.items.length %></span></a><% }) %>
+  </div>
+</nav>
+
+<div class="cat-body">
+  <div class="container">
+    <% groups.forEach(function (g) { %>
+      <section class="cat-group" id="<%= g.key %>" data-cat-group>
+        <header class="cat-group-head">
+          <h2><%= g.name %></h2>
+          <p><%= g.lead %></p>
+        </header>
+        <ul class="cat-list">
+          <% g.items.forEach(function (it) { var href = it.slug ? '/solutions/' + it.slug : '/contacts#form'; %>
+            <li data-cat-item data-text="<%= (it.name + ' ' + it.note).toLowerCase() %>">
+              <a class="cat-item<%= it.slug ? ' has-page' : '' %>" href="<%= href %>">
+                <strong><%= it.name %></strong>
+                <span><%= it.note %></span>
+                <em><%= it.slug ? 'Есть подробное описание' : 'Обсудить задачу' %></em>
+              </a>
+            </li>
+          <% }) %>
+        </ul>
+      </section>
+    <% }) %>
+    <p class="cat-empty" data-cat-empty hidden>Ничего не нашли. Опишите задачу — подберём решение.</p>
+
+    <a class="cta-bar" href="/contacts#form">
+      <span class="cta-bar-text"><strong>Не нашли свою задачу?</strong>Расскажите, что нужно автоматизировать, — предложим решение</span>
+      <span class="btn btn-cta">Обсудить задачу <%- arrow %></span>
+    </a>
+  </div>
+</div>
+<%- include('partials/foot') %>

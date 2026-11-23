@@ -6,7 +6,9 @@
     <div class="ind-tiles">
       <% industrySolutions.forEach(function (s, i) {
            var ind = industries.find(function (x) { return x.name === s.caseIndustry; }); %>
-        <a class="ctile ind-tile <%= tones[i % tones.length] %>" href="<%= ind ? '/cases?industry=' + ind.slug : '/cases' %>">
+        <% var ph = photo(s.photo); %>
+        <a class="ctile ind-tile <%= tones[i % tones.length] %><%= ph ? ' has-cover' : '' %>" href="<%= ind ? '/cases?industry=' + ind.slug : '/cases' %>">
+          <% if (ph) { %><div class="ctile-cover"><img src="<%= ph %>" alt="<%= s.name %>" loading="lazy" width="800" height="450"></div><% } %>
           <div class="ctile-tags"><span><%= s.config %></span></div>
           <h3><%= s.name %></h3>
           <p class="ind-what"><%= s.what %></p>

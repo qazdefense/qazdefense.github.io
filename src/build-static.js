@@ -36,8 +36,9 @@ async function main() {
   const server = await new Promise((r) => { const s = app.listen(0, '127.0.0.1', () => r(s)); });
   const base = `http://127.0.0.1:${server.address().port}`;
 
-  const pages = ['/', '/services', '/industries', '/cases', '/news', '/audit', '/contacts', '/kz'];
+  const pages = ['/', '/services', '/industries', '/cases', '/news', '/audit', '/contacts', '/kz', '/solutions'];
   content.directions.forEach((d) => pages.push(`/services/${d.slug}`));
+  require('./solutions').solutions.forEach((s) => pages.push(`/solutions/${s.slug}`));
   repo.listCases({ publishedOnly: true }).forEach((c) => pages.push(`/cases/${c.slug}`));
   repo.listNews({ publishedOnly: true }).forEach((n) => pages.push(`/news/${n.slug}`));
 

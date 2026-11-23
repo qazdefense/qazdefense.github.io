@@ -1,0 +1,35 @@
+<%
+  var rows = [
+    ['Масло подсолнечное 1 л', 24, 1150],
+    ['Сахар-песок 1 кг', 60, 520],
+    ['Рис длиннозёрный 900 г', 12, 890],
+    ['Чай чёрный, 100 пакетиков', 8, 2340],
+  ];
+  var total = rows.reduce(function (s, r) { return s + r[1] * r[2]; }, 0);
+  function n(v) { return fmtNum(v); }
+%>
+<figure class="doc" aria-label="Пример документа «Заказ клиента» в 1С">
+  <div class="doc-bar">
+    <span class="doc-title">Заказ клиента ЗК-001048 от 14.11.2026</span>
+    <span class="doc-status">К отгрузке</span>
+  </div>
+  <dl class="doc-fields">
+    <div><dt>Клиент</dt><dd>ТОО «Арман-Трейд»</dd></div>
+    <div><dt>Соглашение</dt><dd>Опт, отсрочка 14 дней</dd></div>
+    <div><dt>Склад</dt><dd>Основной склад</dd></div>
+    <div><dt>Менеджер</dt><dd>Сейткали А.</dd></div>
+  </dl>
+  <table class="doc-table">
+    <thead><tr><th>№</th><th>Номенклатура</th><th>Кол-во</th><th>Цена</th><th>Сумма</th></tr></thead>
+    <tbody>
+      <% rows.forEach(function (r, i) { %>
+        <tr><td><%= i + 1 %></td><td><%= r[0] %></td><td><%= r[1] %></td><td><%= n(r[2]) %></td><td><%= n(r[1] * r[2]) %></td></tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <div class="doc-foot">
+    <span>Долг клиента: <b>в пределах лимита</b></span>
+    <span class="doc-total">Итого <b><%= n(total) %> ₸</b></span>
+  </div>
+  <figcaption>Пример документа, данные условные</figcaption>
+</figure>

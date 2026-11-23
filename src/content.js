@@ -71,11 +71,11 @@ const directions = [
 ];
 
 const industrySolutions = [
-  { name: 'Оптовая торговля', caseIndustry: 'Оптовая торговля', config: '1С:УТ', what: 'Цены, скидки, ЭСФ и СНТ', result: 'маржа по клиенту и товару', image: '/img/ind_opt.jpg' },
-  { name: 'Розница и супермаркеты', caseIndustry: 'Супермаркеты и розница', config: '1С:Розница', what: 'Кассы, Kaspi, перемещения между точками', result: 'выручка и остатки по точкам', image: '/img/ind_retail.jpg' },
-  { name: 'Автосалоны и СТО', caseIndustry: 'Автосалоны и СТО', config: 'Альфа-Авто', what: 'Заказ-наряды, запчасти, склад', result: 'выработка мастеров и загрузка постов', image: '/img/ind_auto.jpg' },
-  { name: 'Логистика', caseIndustry: 'Логистика', config: '1С:УАТ', what: 'Путевые листы, ГСМ, ремонты', result: 'прибыль каждого рейса', image: '/img/ind_log.jpg' },
-  { name: 'Услуги', caseIndustry: 'Услуги', config: '1С:УНФ', what: 'Заказы, производство, оплаты', result: 'прибыль по каждому заказу', image: '/img/ind_serv.jpg' },
+  { name: 'Оптовая торговля', photo: 'ind-opt.webp', caseIndustry: 'Оптовая торговля', config: '1С:УТ', what: 'Цены, скидки, ЭСФ и СНТ', result: 'маржа по клиенту и товару', image: '/img/ind_opt.jpg' },
+  { name: 'Розница и супермаркеты', photo: 'ind-retail.webp', caseIndustry: 'Супермаркеты и розница', config: '1С:Розница', what: 'Кассы, Kaspi, перемещения между точками', result: 'выручка и остатки по точкам', image: '/img/ind_retail.jpg' },
+  { name: 'Автосалоны и СТО', photo: 'ind-auto.webp', caseIndustry: 'Автосалоны и СТО', config: 'Альфа-Авто', what: 'Заказ-наряды, запчасти, склад', result: 'выработка мастеров и загрузка постов', image: '/img/ind_auto.jpg' },
+  { name: 'Логистика', photo: 'ind-logistics.webp', caseIndustry: 'Логистика', config: '1С:УАТ', what: 'Путевые листы, ГСМ, ремонты', result: 'прибыль каждого рейса', image: '/img/ind_log.jpg' },
+  { name: 'Услуги', photo: 'ind-services.webp', caseIndustry: 'Услуги', config: '1С:УНФ', what: 'Заказы, производство, оплаты', result: 'прибыль по каждому заказу', image: '/img/ind_serv.jpg' },
 ];
 
 const otherIndustries = ['Супермаркеты', 'АЗС', 'Автозапчасти', 'Ювелирные салоны', 'Заводы и производство', 'Аэропорт', 'Университет'];

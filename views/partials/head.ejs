@@ -7,10 +7,12 @@
   <meta name="description" content="<%= typeof description !== 'undefined' ? description : 'QazDefense: автоматизация учёта и процессов, 1С, ИТ-инфраструктура и защита, сайты и приложения, ИИ-агенты, дизайн и маркетинг. Работаем по всему Казахстану.' %>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800<%= lang === 'kk' ? '&family=Onest:wght@600;700;800' : '' %>&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600<%= lang === 'kk' ? '&family=Onest:wght@500;600' : '' %>&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/site.css?v=<%= v %>">
   <link rel="stylesheet" href="/css/ui.css?v=<%= v %>">
   <% if (path === '/') { %><link rel="stylesheet" href="/css/home.css?v=<%= v %>"><% } %>
+  <% if (path.startsWith('/solutions')) { %><link rel="stylesheet" href="/css/solution.css?v=<%= v %>"><% } %>
+  <link rel="stylesheet" href="/css/craft.css?v=<%= v %>">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -31,6 +33,7 @@
           <% }) %>
         </div>
       </div>
+      <a href="/solutions" class="<%= path.startsWith('/solutions') ? 'is-active' : '' %>">Решения 1С</a>
       <a href="/industries" class="<%= path.startsWith('/industries') ? 'is-active' : '' %>">Отрасли</a>
       <a href="/cases" class="<%= path.startsWith('/cases') ? 'is-active' : '' %>">Кейсы</a>
       <a href="/news" class="<%= path.startsWith('/news') ? 'is-active' : '' %>">Новости</a>

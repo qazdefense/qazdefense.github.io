@@ -61,6 +61,8 @@ function createApp({ repo, uploadsDir, admin, contacts, siteUrl, staticMode = fa
     res.locals.isStatic = staticMode;
     res.locals.channels = buildChannels(contacts);
     res.locals.v = ASSET_V;
+    // фото из public/img/photo — показываем, только если файл уже положили
+    res.locals.photo = (name) => (fs.existsSync(path.join(root, 'public', 'img', 'photo', name)) ? `/img/photo/${name}` : null);
     res.locals.fmtNum = (n) => Number(n).toLocaleString('ru-RU').replace(/\s/g, ' ');
     next();
   });

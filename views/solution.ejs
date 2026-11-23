@@ -1,0 +1,112 @@
+<%- include('partials/head') %>
+<% var arrow = include('partials/icon', { name: 'arrow' }); var check = include('partials/icon', { name: 'check' }); %>
+
+<section class="ph sol-hero">
+  <div class="container sol-hero-grid">
+    <div>
+      <nav class="crumbs" aria-label="Навигация">
+        <a href="/">Главная</a><span>/</span><a href="/services">Направления</a><span>/</span><a href="/services/<%= s.direction %>">1С и учёт</a><span>/</span><span><%= s.short %></span>
+      </nav>
+      <h1><%= s.name %></h1>
+      <p class="ph-lead"><%= s.lead %></p>
+      <div class="ph-actions">
+        <a class="btn btn-cta btn-lg" href="/contacts#form">Обсудить внедрение <%- arrow %></a>
+        <a class="link-arrow link-light" href="/audit">Бесплатный аудит учёта</a>
+      </div>
+    </div>
+    <%- include('partials/sol-mock') %>
+  </div>
+  <div class="container">
+    <dl class="sol-facts">
+      <% s.facts.forEach(function (f) { %><div><dt><%= f.k %></dt><dd><%= f.v %></dd></div><% }) %>
+    </dl>
+  </div>
+</section>
+
+<section class="pg sol-sec band-white">
+  <div class="container">
+    <div class="pg-head"><h2>Что закрывает программа</h2></div>
+    <% var ill = photo('sol-' + s.slug + '.webp'); if (ill) { %>
+      <figure class="sol-ill"><img src="<%= ill %>" alt="Как заказ проходит путь от продажи через склад до бухгалтерии" width="1600" height="900" loading="lazy"></figure>
+    <% } %>
+    <div class="sol-areas">
+      <% s.areas.forEach(function (a) { %>
+        <article class="sol-area sol-area-<%= a.key %>">
+          <span class="sol-tag"><%= a.tag %></span>
+          <h3><%= a.title %></h3>
+          <p><%= a.text %></p>
+          <div class="result">→ <span><%= a.result %></span></div>
+        </article>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="pg sol-sec band-light">
+  <div class="container sol-two">
+    <div>
+      <div class="pg-head"><h2>Возможности</h2></div>
+      <ul class="sol-feats">
+        <% s.features.forEach(function (f) { %><li><span class="sol-check"><%- check %></span><%= f %></li><% }) %>
+      </ul>
+    </div>
+    <div>
+      <div class="pg-head"><h2>Связи с другими программами</h2></div>
+      <div class="sol-links">
+        <div class="sol-hub"><span>1С</span><strong><%= s.links.center %></strong></div>
+        <% s.links.nodes.forEach(function (n, i) { %>
+          <div class="sol-node sol-node-<%= i + 1 %><%= n.std ? '' : ' is-own' %>"><strong><%= n.name %></strong><span><%= n.note %></span></div>
+        <% }) %>
+        <svg class="sol-wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M50 50 L18 18 M50 50 L82 18" class="w-std"/>
+          <path d="M50 50 L18 82 M50 50 L82 82" class="w-own"/>
+        </svg>
+      </div>
+      <div class="sol-legend"><span><i class="w-std"></i><%= s.links.noteStd %></span><span><i class="w-own"></i><%= s.links.noteOwn %></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="pg sol-sec band-navy">
+  <div class="container sol-two">
+    <div>
+      <div class="pg-head"><h2>ПРОФ или Базовая</h2></div>
+      <div class="sol-table" role="table" aria-label="Сравнение версий">
+        <div class="sol-tr sol-th" role="row"><span role="columnheader"></span><% s.editions.cols.forEach(function (c) { %><span role="columnheader"><%= c %></span><% }) %></div>
+        <% s.editions.rows.forEach(function (r) { %>
+          <div class="sol-tr" role="row">
+            <span role="rowheader"><%= r[0] %></span>
+            <% r.slice(1).forEach(function (v) { %>
+              <span role="cell"><% if (v === true) { %><b class="yes"><%- check %></b><% } else if (v === false) { %><b class="no">—</b><% } else { %><%= v %><% } %></span>
+            <% }) %>
+          </div>
+        <% }) %>
+      </div>
+      <p class="sol-note"><%= s.editions.note %></p>
+    </div>
+    <div>
+      <div class="pg-head"><h2>Кому подходит</h2></div>
+      <div class="sol-fit">
+        <% s.fit.forEach(function (f, i) { %>
+          <div class="sol-fit-item"><span class="sol-fit-num"><%= i + 1 %></span><div><h3><%= f.title %></h3><p><%= f.text %></p></div></div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pg sol-sec band-yellow">
+  <div class="container">
+    <div class="pg-head"><h2>Как внедряем</h2></div>
+    <ol class="sol-steps">
+      <% s.steps.forEach(function (st, i) { %>
+        <li><span class="sol-step-num"><%= String(i + 1).padStart(2, '0') %></span><h3><%= st.title %></h3><p><%= st.text %></p></li>
+      <% }) %>
+    </ol>
+    <a class="cta-bar" href="/contacts#form">
+      <span class="cta-bar-text"><strong>Работаете в старой версии или в Excel?</strong>Покажем, как ваш учёт будет выглядеть в Управлении торговлей</span>
+      <span class="btn btn-cta">Обсудить внедрение <%- arrow %></span>
+    </a>
+  </div>
+</section>
+<%- include('partials/foot') %>

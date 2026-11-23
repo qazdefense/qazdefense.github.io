@@ -1,6 +1,10 @@
 'use strict';
 const express = require('express');
 const content = require('../content');
+const { solutions, getSolution } = require('../solutions');
+// чип конфигурации на странице направления → страница решения
+const solutionLinks = { '1С:УТ': '1c-ut-kz' };
+solutions.forEach((x) => { solutionLinks[x.name] = x.slug; });
 
 const LEAD_KINDS = { contacts: 'Заявка с сайта', audit: 'Аудит 1С' };
 
@@ -37,8 +41,24 @@ module.exports = function publicRoutes({ repo }) {
     res.render('service', {
       title: dir.name,
       dir,
+      solutionLinks,
       cases: repo.listCases({ publishedOnly: true, direction: dir.slug, limit: 3 }),
     });
+  });
+
+  r.get('/solutions', (req, res) => {
+    const catalog = require('../catalog');
+    res.render('solutions', {
+      title: 'Решения на 1С для Казахстана',
+      description: 'Каталог решений на 1С: конфигурации для Казахстана, отраслевые программы, обмены с Kaspi.kz и маркетплейсами, ИИ в 1С и сопровождение.',
+      ...catalog,
+    });
+  });
+
+  r.get('/solutions/:slug', (req, res, next) => {
+    const s = getSolution(req.params.slug);
+    if (!s) return next();
+    res.render('solution', { title: s.title, description: s.description, s });
   });
 
   r.get('/industries', (req, res) => {

@@ -24,13 +24,13 @@
         <div class="svc-card">
           <span class="svc-num"><%= String(i + 1).padStart(2, '0') %></span>
           <h3><%= it.title %></h3>
-          <div class="result">→ <%= it.result %></div>
+          <div class="result">→ <span><%= it.result %></span></div>
         </div>
       <% }) %>
     </div>
     <% if (dir.configs) { %>
-      <div class="pg-head" style="margin-top: 36px"><h2>Конфигурации</h2></div>
-      <div class="chip-row"><% dir.configs.forEach(function (c) { %><span><%= c %></span><% }) %></div>
+      <div class="pg-head" style="margin-top: 36px"><h2>Конфигурации</h2><a class="link-arrow" href="/solutions">Все решения на 1С</a></div>
+      <div class="chip-row"><% dir.configs.forEach(function (c) { var sl = solutionLinks[c]; %><% if (sl) { %><a href="/solutions/<%= sl %>"><%= c %> →</a><% } else { %><span><%= c %></span><% } %><% }) %></div>
     <% } %>
   </div>
 </section>
