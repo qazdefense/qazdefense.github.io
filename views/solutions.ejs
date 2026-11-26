@@ -7,7 +7,7 @@
     <div class="cat-hero-row">
       <div>
         <h1>Решения</h1>
-        <p>Готовые решения, которые можно взять и внедрить<% if (products.length) { %>: наши продукты и<% } else { %>:<% } %> конфигурации 1С для Казахстана, отраслевые программы, обмены и доработки. <%= total %> позиций в каталоге.</p>
+        <p>Готовые решения, которые можно взять и внедрить<% if (products.length) { %>: наши программы и<% } else { %>:<% } %> конфигурации 1С для Казахстана, отраслевые программы, обмены и доработки. <%= total %> позиций в каталоге.</p>
       </div>
       <label class="cat-search">
         <span class="sr-only">Поиск по каталогу</span>
@@ -20,7 +20,7 @@
 
 <nav class="cat-nav" aria-label="Разделы каталога">
   <div class="container">
-    <% if (products.length) { %><a href="#products">Свои продукты <span><%= products.length %></span></a><% } %>
+    <% if (products.length) { %><a href="#products">Наши программы <span><%= products.length %></span></a><% } %>
     <% groups.forEach(function (g) { %><a href="#<%= g.key %>"><%= g.name %> <span><%= g.items.length %></span></a><% }) %>
   </div>
 </nav>
@@ -30,8 +30,8 @@
     <% if (products.length) { %>
       <section class="cat-group" id="products" data-cat-group>
         <header class="cat-part">
-          <h2>Свои продукты</h2>
-          <p>Программы, которые разработали мы сами</p>
+          <h2>Наши программы</h2>
+          <p>Разрабатываем сами, раздаём бесплатно</p>
         </header>
         <ul class="cat-list">
           <% products.forEach(function (it) { %>
