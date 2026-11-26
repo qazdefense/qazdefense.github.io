@@ -39,7 +39,6 @@ async function main() {
   const pages = ['/', '/services', '/industries', '/cases', '/news', '/audit', '/contacts', '/kz', '/solutions'];
   content.directions.forEach((d) => pages.push(`/services/${d.slug}`));
   require('./solutions').solutions.forEach((s) => pages.push(`/solutions/${s.slug}`));
-  require('./products').products.forEach((p) => pages.push(`/solutions/${p.slug}`, `/solutions/${p.slug}/roadmap`));
   repo.listCases({ publishedOnly: true }).forEach((c) => pages.push(`/cases/${c.slug}`));
   repo.listNews({ publishedOnly: true }).forEach((n) => pages.push(`/news/${n.slug}`));
 
