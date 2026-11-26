@@ -1,4 +1,9 @@
 'use strict';
+// Каталог страницы «Решения» (/solutions).
+// products — собственные продукты QazDefense (например, обновлятор). Блок на странице появляется, когда список не пуст.
+//   { name, note, href }  href — страница продукта или ссылка на скачивание; download: true — подпись «Скачать бесплатно».
+const products = [];
+
 // Каталог решений на 1С. Названия конфигураций — по каталогу 1c.kz.
 // slug — есть подробная страница (/solutions/:slug); без slug карточка ведёт на заявку.
 
@@ -103,4 +108,4 @@ const groups = [
   },
 ];
 
-module.exports = { groups, total: groups.reduce((n, g) => n + g.items.length, 0) };
+module.exports = { products, groups, total: products.length + groups.reduce((n, g) => n + g.items.length, 0) };

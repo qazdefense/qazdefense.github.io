@@ -49,8 +49,8 @@ module.exports = function publicRoutes({ repo }) {
   r.get('/solutions', (req, res) => {
     const catalog = require('../catalog');
     res.render('solutions', {
-      title: 'Решения на 1С для Казахстана',
-      description: 'Каталог решений на 1С: конфигурации для Казахстана, отраслевые программы, обмены с Kaspi.kz и маркетплейсами, ИИ в 1С и сопровождение.',
+      title: 'Решения',
+      description: 'Готовые решения QazDefense: собственные продукты и каталог решений на 1С — конфигурации для Казахстана, отраслевые программы, обмены с Kaspi.kz и маркетплейсами, ИИ в 1С и сопровождение.',
       ...catalog,
     });
   });

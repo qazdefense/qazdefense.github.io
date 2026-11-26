@@ -3,11 +3,11 @@
 
 <section class="cat-hero">
   <div class="container">
-    <nav class="crumbs" aria-label="Навигация"><a href="/">Главная</a><span>/</span><span>Решения на 1С</span></nav>
+    <nav class="crumbs" aria-label="Навигация"><a href="/">Главная</a><span>/</span><span>Решения</span></nav>
     <div class="cat-hero-row">
       <div>
-        <h1>Решения на 1С</h1>
-        <p>Конфигурации для Казахстана, отраслевые программы, обмены и доработки. <%= total %> решений в каталоге.</p>
+        <h1>Решения</h1>
+        <p>Готовые решения, которые можно взять и внедрить<% if (products.length) { %>: наши продукты и<% } else { %>:<% } %> конфигурации 1С для Казахстана, отраслевые программы, обмены и доработки. <%= total %> позиций в каталоге.</p>
       </div>
       <label class="cat-search">
         <span class="sr-only">Поиск по каталогу</span>
@@ -20,16 +20,40 @@
 
 <nav class="cat-nav" aria-label="Разделы каталога">
   <div class="container">
+    <% if (products.length) { %><a href="#products">Свои продукты <span><%= products.length %></span></a><% } %>
     <% groups.forEach(function (g) { %><a href="#<%= g.key %>"><%= g.name %> <span><%= g.items.length %></span></a><% }) %>
   </div>
 </nav>
 
 <div class="cat-body">
   <div class="container">
+    <% if (products.length) { %>
+      <section class="cat-group" id="products" data-cat-group>
+        <header class="cat-part">
+          <h2>Свои продукты</h2>
+          <p>Программы, которые разработали мы сами</p>
+        </header>
+        <ul class="cat-list">
+          <% products.forEach(function (it) { %>
+            <li data-cat-item data-text="<%= (it.name + ' ' + it.note).toLowerCase() %>">
+              <a class="cat-item has-page" href="<%= it.href %>">
+                <strong><%= it.name %></strong>
+                <span><%= it.note %></span>
+                <em><%= it.download ? 'Скачать бесплатно' : 'Подробнее' %></em>
+              </a>
+            </li>
+          <% }) %>
+        </ul>
+      </section>
+    <% } %>
+    <header class="cat-part" id="1c">
+      <h2>Решения на 1С</h2>
+      <p>Конфигурации для Казахстана, отраслевые программы, обмены и доработки</p>
+    </header>
     <% groups.forEach(function (g) { %>
       <section class="cat-group" id="<%= g.key %>" data-cat-group>
         <header class="cat-group-head">
-          <h2><%= g.name %></h2>
+          <h3><%= g.name %></h3>
           <p><%= g.lead %></p>
         </header>
         <ul class="cat-list">
