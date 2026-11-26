@@ -1,9 +1,8 @@
 'use strict';
-// Каталог страницы «Решения» (/solutions).
-// products — собственные программы QazDefense (блок «Наши программы»). Блок на странице появляется, когда список не пуст.
-//   { name, note, href }  href — страница продукта или ссылка на скачивание; download: true — подпись «Скачать бесплатно».
+// Разделы страницы «Решения» (/solutions): каждый открывается отдельной страницей /solutions/<key>.
+// products — собственные программы QazDefense (/solutions/programs). slug — страница программы в src/products.js.
 const products = [
-  { name: 'Базовод', note: 'Пакетное обновление баз 1С: блокировка, копия, тестирование и откат при ошибке', href: '/solutions/bazovod' },
+  { name: 'Базовод', note: 'Пакетное обновление баз 1С: блокировка, копия, тестирование и откат при ошибке', slug: 'bazovod' },
 ];
 
 // Каталог решений на 1С. Названия конфигураций — по каталогу 1c.kz.
@@ -110,4 +109,6 @@ const groups = [
   },
 ];
 
-module.exports = { products, groups, total: products.length + groups.reduce((n, g) => n + g.items.length, 0) };
+const total1c = groups.reduce((n, g) => n + g.items.length, 0);
+
+module.exports = { products, groups, total1c };

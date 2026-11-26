@@ -1,0 +1,46 @@
+<%- include('partials/head') %>
+<% var arrow = include('partials/icon', { name: 'arrow' }); %>
+
+<section class="cat-hero">
+  <div class="container">
+    <nav class="crumbs" aria-label="Навигация"><a href="/">Главная</a><span>/</span><span>Решения</span></nav>
+    <h1>Решения</h1>
+    <p>Готовое, что можно взять и внедрить. Выберите раздел.</p>
+  </div>
+</section>
+
+<div class="cat-body">
+  <div class="container">
+    <div class="hub">
+      <article class="hub-card hub-1c">
+        <a class="hub-main" href="/solutions/1c">
+          <h2>Решения на 1С</h2>
+          <p>Конфигурации для Казахстана, отраслевые программы, обмены с сервисами, ИИ в 1С и сопровождение</p>
+          <span class="hub-count"><%= total1c %> решений в каталоге</span>
+        </a>
+        <ul class="hub-links">
+          <% groups.forEach(function (g) { %><li><a href="/solutions/1c#<%= g.key %>"><%= g.name %> <span><%= g.items.length %></span></a></li><% }) %>
+        </ul>
+        <a class="btn btn-cta hub-btn" href="/solutions/1c">Открыть каталог 1С <%- arrow %></a>
+      </article>
+
+      <article class="hub-card hub-own">
+        <a class="hub-main" href="/solutions/programs">
+          <h2>Наши программы</h2>
+          <p>Разрабатываем сами и раздаём бесплатно. Скачать может любой</p>
+          <span class="hub-count"><%= products.length %> <%= products.length === 1 ? 'программа' : (products.length < 5 ? 'программы' : 'программ') %></span>
+        </a>
+        <ul class="hub-links">
+          <% products.forEach(function (p) { %><li><a href="/solutions/<%= p.slug %>"><%= p.name %></a></li><% }) %>
+        </ul>
+        <a class="btn btn-light hub-btn" href="/solutions/programs">Смотреть программы <%- arrow %></a>
+      </article>
+    </div>
+
+    <a class="cta-bar" href="/contacts#form">
+      <span class="cta-bar-text"><strong>Не знаете, с чего начать?</strong>Расскажите о задаче — подскажем, какое решение подойдёт</span>
+      <span class="btn btn-cta">Обсудить задачу <%- arrow %></span>
+    </a>
+  </div>
+</div>
+<%- include('partials/foot') %>

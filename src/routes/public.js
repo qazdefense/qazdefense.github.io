@@ -47,12 +47,33 @@ module.exports = function publicRoutes({ repo }) {
     });
   });
 
+  // «Решения»: распределитель по разделам, у каждого раздела своя страница
   r.get('/solutions', (req, res) => {
     const catalog = require('../catalog');
-    res.render('solutions', {
+    res.render('solutions-hub', {
       title: 'Решения',
-      description: 'Готовые решения QazDefense: собственные продукты и каталог решений на 1С — конфигурации для Казахстана, отраслевые программы, обмены с Kaspi.kz и маркетплейсами, ИИ в 1С и сопровождение.',
+      description: 'Готовые решения QazDefense: каталог решений на 1С для Казахстана и наши собственные программы, которые раздаём бесплатно.',
       ...catalog,
+    });
+  });
+
+  r.get('/solutions/1c', (req, res) => {
+    const catalog = require('../catalog');
+    res.render('solutions', {
+      title: 'Решения на 1С для Казахстана',
+      description: 'Каталог решений на 1С: конфигурации для Казахстана, отраслевые программы, обмены с Kaspi.kz и маркетплейсами, ИИ в 1С и сопровождение.',
+      section: { name: 'Решения на 1С', intro: `Конфигурации для Казахстана, отраслевые программы, обмены и доработки. ${catalog.total1c} решений в каталоге.`, search: true },
+      groups: catalog.groups,
+    });
+  });
+
+  r.get('/solutions/programs', (req, res) => {
+    const catalog = require('../catalog');
+    res.render('solutions', {
+      title: 'Наши программы',
+      description: 'Программы, которые QazDefense разрабатывает сама и раздаёт бесплатно.',
+      section: { name: 'Наши программы', intro: 'Разрабатываем сами и раздаём бесплатно. Скачать может любой.', search: false },
+      groups: [{ key: 'programs', name: 'Программы', lead: 'Описание, скачивание и планы развития', items: catalog.products, label: 'Описание и скачивание' }],
     });
   });
 

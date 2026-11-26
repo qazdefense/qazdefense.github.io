@@ -4,7 +4,7 @@
 <section class="ph pm-rhead">
   <div class="container">
     <nav class="crumbs" aria-label="Навигация">
-      <a href="/">Главная</a><span>/</span><a href="/solutions">Решения</a><span>/</span><a href="/solutions/<%= p.slug %>"><%= p.name %></a><span>/</span><span>Дорожная карта</span>
+      <a href="/">Главная</a><span>/</span><a href="/solutions">Решения</a><span>/</span><a href="/solutions/programs">Наши программы</a><span>/</span><a href="/solutions/<%= p.slug %>"><%= p.name %></a><span>/</span><span>Дорожная карта</span>
     </nav>
     <h1>Дорожная карта: <%= p.name %></h1>
     <p class="ph-lead">Сделано <%= rm.done %> из <%= rm.total %> задач<% if (rm.current) { %>, сейчас в работе этап <%= rm.current.version %> «<%= rm.current.title %>»<% } %>. Страница собирается из задач разработки, обновлено <%= rm.updatedText %>.</p>

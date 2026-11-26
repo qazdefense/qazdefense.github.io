@@ -29,7 +29,7 @@
       <% }) %>
     </div>
     <% if (dir.configs) { %>
-      <div class="pg-head" style="margin-top: 36px"><h2>Конфигурации</h2><a class="link-arrow" href="/solutions#1c">Все решения на 1С</a></div>
+      <div class="pg-head" style="margin-top: 36px"><h2>Конфигурации</h2><a class="link-arrow" href="/solutions/1c">Все решения на 1С</a></div>
       <div class="chip-row"><% dir.configs.forEach(function (c) { var sl = solutionLinks[c]; %><% if (sl) { %><a href="/solutions/<%= sl %>"><%= c %> →</a><% } else { %><span><%= c %></span><% } %><% }) %></div>
     <% } %>
   </div>

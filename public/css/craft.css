@@ -496,12 +496,23 @@ a.channel.ch-wa, .channel.ch-wa { background: #16A34A; border-color: #16A34A; }
 .ctile-cover { background: var(--bg); }
 .ctile.has-cover .ctile-tags span { background: var(--bg) !important; color: var(--text) !important; } .ctile.has-cover .ind-what { color: var(--muted) !important; }
 
-/* Страница «Решения»: крупные разделы (свои продукты, 1С) над группами каталога */
-.cat-part { padding-top: 48px; margin-bottom: -8px; scroll-margin-top: 130px; }
-.cat-part h2 { font-size: clamp(1.8rem, 2.8vw, 2.4rem); letter-spacing: -0.03em; color: var(--navy); }
-.cat-part p { margin-top: 6px; color: var(--muted); font-size: 16px; }
-.cat-group > .cat-part { padding-top: 8px; margin-bottom: 18px; }
-.cat-group-head h3 { font-size: clamp(1.3rem, 1.8vw, 1.6rem); letter-spacing: -0.02em; }
+/* «Решения»: распределитель по разделам (/solutions) */
+.cat-hero h1 + p { margin-top: 12px; }
+.hub { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 20px; padding-top: 40px; margin-bottom: 40px; }
+.hub-card { display: flex; flex-direction: column; gap: 22px; padding: 36px; border-radius: var(--radius); color: var(--white); transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
+.hub-card:hover { transform: translateY(-3px); box-shadow: var(--lift); }
+.hub-1c { background: var(--accent); }
+.hub-own { background: var(--navy); }
+.hub-main { display: flex; flex-direction: column; gap: 10px; color: inherit; }
+.hub-main h2 { color: var(--white); font-size: clamp(1.9rem, 3vw, 2.6rem); letter-spacing: -0.03em; }
+.hub-main p { color: rgba(255, 255, 255, .82); font-size: 17px; max-width: 460px; }
+.hub-count { font-size: 14px; color: rgba(255, 255, 255, .7); font-variant-numeric: tabular-nums; }
+.hub-links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; flex: 1; align-content: flex-start; }
+.hub-links a { display: inline-flex; gap: 6px; align-items: baseline; padding: 7px 12px; border-radius: 6px; background: rgba(255, 255, 255, .12); color: var(--white); font-size: 14.5px; transition: background .15s; }
+.hub-links a:hover { background: rgba(255, 255, 255, .22); }
+.hub-links span { color: rgba(255, 255, 255, .65); font-size: 13px; font-variant-numeric: tabular-nums; }
+.hub-btn { align-self: flex-start; }
+@media (max-width: 860px) { .hub { grid-template-columns: 1fr; } .hub-card { padding: 26px; } }
 
 /* Главная, «Как начинаем работу»: без карточки аудита, кнопка под заголовком */
 .how-left { justify-content: center; }
