@@ -31,7 +31,7 @@
           <span class="hub-count"><%= products.length %> <%= products.length === 1 ? 'программа' : (products.length < 5 ? 'программы' : 'программ') %></span>
         </a>
         <ul class="hub-links">
-          <% products.forEach(function (p) { %><li><a href="/solutions/<%= p.slug %>"><%= p.name %></a></li><% }) %>
+          <% products.forEach(function (p) { %><li><a href="<%= p.href || '/solutions/' + p.slug %>"><%= p.name %></a></li><% }) %>
         </ul>
         <a class="btn btn-light hub-btn" href="/solutions/programs">Смотреть программы <%- arrow %></a>
       </article>

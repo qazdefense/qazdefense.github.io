@@ -37,12 +37,12 @@
           <p><%= g.lead %></p>
         </header>
         <ul class="cat-list">
-          <% g.items.forEach(function (it) { var href = it.slug ? '/solutions/' + it.slug : '/contacts#form'; %>
+          <% g.items.forEach(function (it) { var page = it.href || (it.slug ? '/solutions/' + it.slug : ''); var href = page || '/contacts#form'; %>
             <li data-cat-item data-text="<%= (it.name + ' ' + it.note).toLowerCase() %>">
-              <a class="cat-item<%= it.slug ? ' has-page' : '' %>" href="<%= href %>">
+              <a class="cat-item<%= page ? ' has-page' : '' %>" href="<%= href %>">
                 <strong><%= it.name %></strong>
                 <span><%= it.note %></span>
-                <em><%= it.slug ? (g.label || 'Есть подробное описание') : 'Обсудить задачу' %></em>
+                <em><%= page ? (g.label || 'Есть подробное описание') : 'Обсудить задачу' %></em>
               </a>
             </li>
           <% }) %>

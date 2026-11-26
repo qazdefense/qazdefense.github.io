@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Базовод</title>
+<meta name="description" content="Базовод: бесплатная программа для пакетного обновления баз 1С. Блокировка входа, завершение сеансов, резервная копия, тестирование и откат при ошибке.">
+<meta property="og:title" content="Базовод">
+<meta property="og:description" content="Базы 1С обновляются сами: с копией, проверкой и откатом при ошибке.">
+<meta property="og:image" content="assets/app/main-light.webp">
+<meta name="theme-color" content="#1F5FD1">
+<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/site.css?v=1">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body class="page-flow">
+
+<header class="top flow-top">
+  <div class="wrap">
+    <a class="brand wordmark" href="./" aria-label="Базовод, на главную"><img src="assets/mark-w.svg" alt="" width="30" height="30"><span>Базовод</span></a>
+    <nav class="nav" aria-label="Разделы">
+      <a class="opt" href="./" aria-current="page">Главная</a>
+      <a class="opt" href="roadmap.html">Дорожная карта</a>
+      <a class="opt qd-link" href="/">QazDefense</a>
+      <button type="button" id="theme" class="theme-btn" aria-label="Светлая или тёмная тема"><svg viewBox="0 0 24 24" aria-hidden="true"><g class="ic-sun"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g><path class="ic-moon" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="flow-hero band" id="start">
+    <div class="wrap">
+      <div class="hero-text">
+        <p class="kicker">Бесплатная программа для 1С</p>
+        <h1>Базовод</h1>
+        <p class="lead">Базы 1С обновляются сами: с копией, проверкой и откатом при ошибке.</p>
+        <div class="stores">
+          <a class="store" href="roadmap.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c3-6 11-2 14-9"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="6" r="2"/></g></svg>
+            Дорожная карта
+          </a>
+          <a class="store ghost" href="/contacts#form">Получить первым</a>
+        </div>
+      </div>
+      <div class="appwin" aria-hidden="true">
+        <div class="appwin-bar"><i></i><i></i><i></i></div>
+        <img class="light" src="assets/app/main-light.webp" alt="" width="1680" height="1050">
+        <img class="dark" src="assets/app/main-dark.webp" alt="" width="1680" height="1050" loading="lazy">
+      </div>
+      <div class="float-card fc1" aria-hidden="true"><span>Обновлено за ночь</span><b>8 из 9 баз</b></div>
+      <div class="float-card fc2" aria-hidden="true"><span>Копия перед обновлением</span><b>6,7 ГБ</b></div>
+      <div class="float-card fc3" aria-hidden="true"><i></i><div><b>База восстановлена</b><span>Обновление не прошло, откат из копии</span></div></div>
+    </div>
+  </section>
+
+  <section class="flow-block reveal" id="features">
+    <div class="wrap">
+      <h2>Что умеет первая версия</h2>
+      <div class="tasks">
+        <div class="task">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+          <div><h3>Проверить релизы</h3><p>Новые версии конфигураций в фоне и по кнопке, какие базы отстают</p></div>
+        </div>
+        <div class="task">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+          <div><h3>Закрыть вход в базу</h3><p>Блокировка начала сеансов и регламентных заданий на время работ</p></div>
+        </div>
+        <div class="task">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c.8-3.4 3.2-5 6-5s5.2 1.6 6 5"/><path d="M16 8l5 5M21 8l-5 5"/></svg>
+          <div><h3>Завершить сеансы</h3><p>Предупредить пользователей, подождать, потом закрыть принудительно</p></div>
+        </div>
+        <div class="task">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg>
+          <div><h3>Сделать копию</h3><p>Выгрузка .dt или архив для файловых, MS SQL и PostgreSQL для серверных</p></div>
+        </div>
+        <div class="task">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+          <div><h3>Протестировать базу</h3><p>Тестирование и исправление до или после обновления</p></div>
+        </div>
+        <div class="task">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          <div><h3>Обновить</h3><p>Из хранилища конфигурации или по цепочке релизов с обработчиками</p></div>
+        </div>
+        <div class="task">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+          <div><h3>Откатить при ошибке</h3><p>Вернуть базу из копии и снять блокировку, если обновление не прошло</p></div>
+        </div>
+        <div class="task">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
+          <div><h3>Показать отчёт</h3><p>Каждый шаг по каждой базе со временем, текст ошибки</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="flow-block reveal" id="how">
+    <div class="wrap">
+      <h2>Как обновляется база</h2>
+      <ol class="steps four">
+        <li><h3>Подготовка</h3><p>Вход закрыт, сеансы завершены, задания остановлены</p></li>
+        <li><h3>Копия и проверка</h3><p>Резервная копия, тестирование базы</p></li>
+        <li><h3>Обновление</h3><p>Из хранилища или релиз за релизом</p></li>
+        <li><h3>Итог</h3><p>Вход снова открыт или база возвращена из копии</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="flow-block reveal" id="route-block">
+    <div class="wrap teaser">
+      <div>
+        <h2>Дорожная карта</h2>
+        <p class="lead-dark">Что уже сделано и что впереди. Обновляется из задач разработки.</p>
+      </div>
+      <a class="btn-route" href="roadmap.html">Дорожная карта <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </section>
+
+  <section class="flow-block band finale reveal" id="end">
+    <div class="wrap finale-grid">
+      <div class="finale-text">
+        <h2>Получить первым</h2>
+        <ol class="finale-steps">
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg></span><div><b>Оставьте контакты</b><span>Форма на сайте QazDefense</span></div></li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></span><div><b>Получите первую версию</b><span>Когда закроем этап 0.2</span></div></li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span><div><b>Настроим вместе</b><span>Базы, учётные записи, расписание</span></div></li>
+        </ol>
+      </div>
+      <div class="cta-row">
+        <a class="store" href="/contacts#form">Оставить заявку</a>
+        <a class="store ghost" href="roadmap.html">Дорожная карта</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<nav class="tabbar" aria-label="Разделы">
+  <a href="./" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 5l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5h-5v5H5a1 1 0 0 1-1-1z"/></g></svg><span>Главная</span></a>
+  <a href="roadmap.html"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c3-6 11-2 14-9"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="6" r="2"/></g></svg><span>Карта</span></a>
+  <a href="/contacts#form"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></g></svg><span>Заявка</span></a>
+</nav>
+
+<footer>
+  <div class="wrap">
+    <span>© QazDefense 2026</span>
+  </div>
+</footer>
+
+<button type="button" class="to-top" id="toTop" aria-label="Наверх"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<script src="assets/deck.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Дорожная карта Базовода</title>
+<meta name="description" content="Маршрут разработки Базовода: что уже сделано, что в работе и что впереди. Обновляется из задач разработки.">
+<meta name="theme-color" content="#1F5FD1">
+<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/site.css?v=1">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+
+<div class="band rm-head">
+  <header class="top">
+    <div class="wrap">
+      <a class="brand wordmark" href="./" aria-label="Базовод, на главную"><img src="assets/mark-w.svg" alt="" width="30" height="30"><span>Базовод</span></a>
+      <nav class="nav" aria-label="Разделы">
+        <a class="opt" href="./">Главная</a>
+        <a class="opt" href="roadmap.html" aria-current="page">Дорожная карта</a>
+        <a class="opt qd-link" href="/">QazDefense</a>
+        <button type="button" id="theme" class="theme-btn" aria-label="Светлая или тёмная тема"><svg viewBox="0 0 24 24" aria-hidden="true"><g class="ic-sun"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g><path class="ic-moon" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+      </nav>
+    </div>
+  </header>
+  <div class="wrap">
+    <h1>Дорожная карта</h1>
+    <p>Что уже сделано и что впереди. Нажмите на версию.</p>
+  </div>
+</div>
+
+<main class="wrap road-page"><div id="route" class="route"></div></main>
+
+<nav class="tabbar" aria-label="Разделы">
+  <a href="./"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 5l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5h-5v5H5a1 1 0 0 1-1-1z"/></g></svg><span>Главная</span></a>
+  <a href="roadmap.html" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c3-6 11-2 14-9"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="6" r="2"/></g></svg><span>Карта</span></a>
+  <a href="/contacts#form"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></g></svg><span>Заявка</span></a>
+</nav>
+
+<footer>
+  <div class="wrap">
+    <span>© QazDefense 2026</span>
+  </div>
+</footer>
+
+<button type="button" class="to-top" id="toTop" aria-label="Наверх"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<script src="assets/deck.js?v=1"></script>
+</body>
+</html>
