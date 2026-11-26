@@ -42,8 +42,9 @@
     var ms = data.milestones.map(L.loc);
     var done = ms.filter(function (m) { return m.status === "done"; });
     var next = ms.filter(function (m) { return m.status === "next"; });
-    var itemsDone = done.reduce(function (n, m) { return n + m.items.length; }, 0);
-    var itemsNext = next.reduce(function (n, m) { return n + m.items.length; }, 0);
+    var fin = function (p, m) { return m.status === "done" || p[2] === 1; };
+    var itemsDone = ms.reduce(function (n, m) { return n + m.items.filter(function (p) { return fin(p, m); }).length; }, 0);
+    var itemsNext = next.reduce(function (n, m) { return n + m.items.filter(function (p) { return !fin(p, m); }).length; }, 0);
 
     var stats = el("div", "route-stats");
     [[done.length, T("из {total} этапов пройдено", { total: ms.length })],
@@ -164,7 +165,7 @@
       sec.appendChild(el("p", "ms-meta", (m.date ? when(m) + " — " : "") + status(m.status)));
       var ul = el("ul", null);
       m.items.forEach(function (p) {
-        var li = el("li", null);
+        var li = el("li", m.status !== "done" && p[2] === 1 ? "fin" : null);
         li.appendChild(el("b", null, p[0]));
         li.appendChild(el("span", null, p[1]));
         ul.appendChild(li);
@@ -195,7 +196,7 @@
       inner.appendChild(el("h3", null, m.version + " — " + m.title));
       var ul = el("ul", null);
       m.items.forEach(function (p, k) {
-        var li = el("li", null);
+        var li = el("li", m.status !== "done" && p[2] === 1 ? "fin" : null);
         li.style.setProperty("--k", k);
         li.appendChild(el("i", "ico"));
         var t = el("p", null);

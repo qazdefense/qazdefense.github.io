@@ -34,7 +34,8 @@ const milestones = ms.map((m) => {
   const done = items.filter((i) => i.done).length;
   let status = 'plan';
   if (m.state === 'closed') status = 'done';
-  else if (!nextTaken) { status = 'next'; nextTaken = true; }
+  // В работе: первый открытый этап и любой открытый, где уже закрыта хоть одна задача.
+  else if (!nextTaken || done > 0) { status = 'next'; nextTaken = true; }
   const sp = m.title.indexOf(' ');
   return {
     version: m.title.slice(0, sp),
@@ -65,7 +66,8 @@ const deck = {
       status: m.status,
       title: m.title,
       short: m.status === 'done' ? '' : m.title.split(':')[0],
-      items: m.items.map((it) => [it.title, it.note]),
+      // Третий элемент 1: задача закрыта на GitHub.
+      items: m.items.map((it) => (it.done ? [it.title, it.note, 1] : [it.title, it.note])),
     };
   }),
 };

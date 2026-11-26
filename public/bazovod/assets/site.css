@@ -1364,3 +1364,7 @@ html.i18n-wait body, html.lang-fade body { opacity: 0; }
 .flow-hero .fc1 { right: max(24px, calc((100vw - var(--wrap)) / 2)); left: auto; top: 13%; }
 .flow-hero .fc2 { top: auto; bottom: 22%; right: max(24px, calc((100vw - var(--wrap)) / 2) - 20px); }
 .flow-hero .fc3 { right: calc(max(24px, (100vw - var(--wrap)) / 2) + min(26vw, 360px)); bottom: 10%; }
+
+/* Задача закрыта, а этап ещё идёт */
+.card-inner li.fin b::before, .ms li.fin b::before { content: "✓ "; color: var(--ok, #1E8E4E); }
+.card-inner li.fin p, .ms li.fin span { opacity: .75; }
