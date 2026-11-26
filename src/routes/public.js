@@ -2,6 +2,7 @@
 const express = require('express');
 const content = require('../content');
 const { solutions, getSolution } = require('../solutions');
+const products = require('../products');
 // чип конфигурации на странице направления → страница решения
 const solutionLinks = { '1С:УТ': '1c-ut-kz' };
 solutions.forEach((x) => { solutionLinks[x.name] = x.slug; });
@@ -52,6 +53,23 @@ module.exports = function publicRoutes({ repo }) {
       title: 'Решения на 1С для Казахстана',
       description: 'Каталог решений на 1С: конфигурации для Казахстана, отраслевые программы, обмены с Kaspi.kz и маркетплейсами, ИИ в 1С и сопровождение.',
       ...catalog,
+    });
+  });
+
+  r.get('/solutions/:slug', (req, res, next) => {
+    const p = products.getProduct(req.params.slug);
+    if (!p) return next();
+    res.render('product', { title: p.title, description: p.description, p, rm: products.roadmap(p.slug) });
+  });
+
+  r.get('/solutions/:slug/roadmap', (req, res, next) => {
+    const p = products.getProduct(req.params.slug);
+    const rm = p && products.roadmap(p.slug);
+    if (!rm) return next();
+    res.render('roadmap', {
+      title: `Дорожная карта: ${p.name}`,
+      description: `Что уже сделано в программе ${p.name}, что в работе и что впереди. Обновляется из задач разработки.`,
+      p, rm,
     });
   });
 
