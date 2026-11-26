@@ -1,0 +1,41 @@
+<%- include('partials/head') %>
+<% var check = include('partials/icon', { name: 'check' }); %>
+
+<section class="ph pm-rhead">
+  <div class="container">
+    <nav class="crumbs" aria-label="Навигация">
+      <a href="/">Главная</a><span>/</span><a href="/solutions">Решения</a><span>/</span><a href="/solutions/<%= p.slug %>"><%= p.name %></a><span>/</span><span>Дорожная карта</span>
+    </nav>
+    <h1>Дорожная карта: <%= p.name %></h1>
+    <p class="ph-lead">Сделано <%= rm.done %> из <%= rm.total %> задач<% if (rm.current) { %>, сейчас в работе этап <%= rm.current.version %> «<%= rm.current.title %>»<% } %>. Страница собирается из задач разработки, обновлено <%= rm.updatedText %>.</p>
+  </div>
+</section>
+
+<section class="pg band-white">
+  <div class="container narrow">
+    <ol class="pm-road">
+      <% rm.milestones.forEach(function (m) { %>
+        <li class="pm-ms is-<%= m.status %>">
+          <div class="pm-mh">
+            <span class="pm-v"><%= m.version %></span>
+            <div class="pm-mt">
+              <h2><%= m.title %></h2>
+              <p><%= m.note %></p>
+            </div>
+            <span class="pm-s"><%= m.status === 'done' ? 'сделано' : m.status === 'next' ? 'в работе' : 'впереди' %>, <%= m.done %> из <%= m.total %></span>
+          </div>
+          <div class="pm-bar" role="img" aria-label="Сделано <%= m.done %> из <%= m.total %>"><i style="width:<%= m.total ? Math.round(m.done / m.total * 100) : 0 %>%"></i></div>
+          <ul class="pm-items">
+            <% m.items.forEach(function (it) { %>
+              <li class="<%= it.done ? 'is-done' : '' %>">
+                <span class="pm-box"><% if (it.done) { %><%- check %><% } %></span>
+                <span><strong><%= it.title %></strong><span class="pm-note"><%= it.note %></span></span>
+              </li>
+            <% }) %>
+          </ul>
+        </li>
+      <% }) %>
+    </ol>
+  </div>
+</section>
+<%- include('partials/foot') %>
