@@ -25,7 +25,7 @@
       <a class="opt" href="./" aria-current="page">Главная</a>
       <a class="opt" href="roadmap.html">Дорожная карта</a>
       <a class="opt qd-link" href="/">QazDefense</a>
-      <button type="button" id="theme" class="theme-btn" aria-label="Светлая или тёмная тема"><svg viewBox="0 0 24 24" aria-hidden="true"><g class="ic-sun"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g><path class="ic-moon" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+      <button type="button" id="theme" class="theme-btn" aria-label="Светлая или темная тема"><svg viewBox="0 0 24 24" aria-hidden="true"><g class="ic-sun"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></g><path class="ic-moon" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
     </nav>
   </div>
 </header>
@@ -45,14 +45,21 @@
           <a class="store ghost" href="/contacts#form">Получить первым</a>
         </div>
       </div>
-      <div class="appwin" aria-hidden="true">
-        <div class="appwin-bar"><i></i><i></i><i></i></div>
-        <img class="light" src="assets/app/main-light.webp" alt="" width="1680" height="1050">
-        <img class="dark" src="assets/app/main-dark.webp" alt="" width="1680" height="1050" loading="lazy">
-      </div>
-      <div class="float-card fc1" aria-hidden="true"><span>Обновлено за ночь</span><b>8 из 9 баз</b></div>
-      <div class="float-card fc2" aria-hidden="true"><span>Копия перед обновлением</span><b>6,7 ГБ</b></div>
-      <div class="float-card fc3" aria-hidden="true"><i></i><div><b>База восстановлена</b><span>Обновление не прошло, откат из копии</span></div></div>
+      <figure class="runcard" aria-label="Как Базовод обновляет одну базу: шаги по порядку">
+        <div class="rc-head">
+          <div><b>Бухгалтерия для Казахстана</b><span>файловая база</span></div>
+          <span class="rc-ver">3.0.74.2 <i aria-hidden="true">→</i> 3.0.75.1</span>
+        </div>
+        <ol class="rc-steps">
+          <li><span class="rc-dot"></span><b>Проверка входа</b><em>платформа 8.5</em></li>
+          <li><span class="rc-dot"></span><b>Вход в базу закрыт</b><em>сеансов нет</em></li>
+          <li><span class="rc-dot"></span><b>Резервная копия</b><em>336 МБ</em></li>
+          <li><span class="rc-dot"></span><b>Обновление до 3.0.75.1</b><em>0,7 мин</em></li>
+          <li><span class="rc-dot"></span><b>Обработчики обновления</b><em>9,7 мин</em></li>
+          <li><span class="rc-dot"></span><b>Вход снова открыт</b><em></em></li>
+        </ol>
+        <figcaption class="rc-foot"><span class="rc-tag">Готово</span><span>база на последнем релизе, 1С на экране не открывалась</span></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -90,7 +97,7 @@
         </div>
         <div class="task">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
-          <div><h3>Показать отчёт</h3><p>Каждый шаг по каждой базе со временем, текст ошибки</p></div>
+          <div><h3>Показать отчет</h3><p>Каждый шаг по каждой базе со временем, текст ошибки</p></div>
         </div>
       </div>
     </div>
@@ -125,7 +132,7 @@
         <ol class="finale-steps">
           <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg></span><div><b>Оставьте контакты</b><span>Форма на сайте QazDefense</span></div></li>
           <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></span><div><b>Получите первую версию</b><span>Когда закроем этап 0.2</span></div></li>
-          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span><div><b>Настроим вместе</b><span>Базы, учётные записи, расписание</span></div></li>
+          <li><span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span><div><b>Настроим вместе</b><span>Базы, учетные записи, расписание</span></div></li>
         </ol>
       </div>
       <div class="cta-row">
@@ -150,5 +157,18 @@
 
 <button type="button" class="to-top" id="toTop" aria-label="Наверх"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 <script src="assets/deck.js?v=1"></script>
+<script>
+(function () {
+  var card = document.querySelector(".runcard"); if (!card) return;
+  var li = card.querySelectorAll(".rc-steps li"), n = li.length, k = 0;
+  function draw() {
+    for (var i = 0; i < n; i++) li[i].className = i < k ? "done" : i === k ? "run" : "";
+    card.classList.toggle("finished", k >= n);
+  }
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { k = n; draw(); return; }
+  draw();
+  setInterval(function () { k = k > n + 1 ? 0 : k + 1; draw(); }, 1100);
+})();
+</script>
 </body>
 </html>

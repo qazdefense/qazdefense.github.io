@@ -1368,3 +1368,31 @@ html.i18n-wait body, html.lang-fade body { opacity: 0; }
 /* Задача закрыта, а этап ещё идёт */
 .card-inner li.fin b::before, .ms li.fin b::before { content: "✓ "; color: var(--ok, #1E8E4E); }
 .card-inner li.fin p, .ms li.fin span { opacity: .75; }
+
+/* Первый экран Базовода: вместо снимка программы — сама работа, шаги обновления одной базы */
+.runcard { margin: 0; justify-self: center; width: min(100%, 520px); display: grid; gap: 0; border-radius: 22px; overflow: hidden;
+  background: var(--surface); color: var(--fg); box-shadow: 0 40px 80px -30px rgba(8, 24, 70, .6); }
+.rc-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; border-bottom: 1px solid var(--line); }
+.rc-head div { display: grid; gap: 2px; min-width: 0; }
+.rc-head b { font-size: 17px; font-weight: 700; }
+.rc-head span { font-size: 13px; color: var(--muted); }
+.rc-ver { font: 600 14px/1 var(--font); white-space: nowrap; color: var(--fg) !important; font-variant-numeric: tabular-nums; }
+.rc-ver i { font-style: normal; color: var(--ular); padding: 0 4px; }
+.rc-steps { list-style: none; margin: 0; padding: 10px 24px; display: grid; }
+.rc-steps li { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 11px 0; color: var(--muted); transition: color .3s; }
+.rc-steps li + li { border-top: 1px solid var(--line); }
+.rc-steps b { font-weight: 600; }
+.rc-steps em { font-style: normal; font-size: 13px; font-variant-numeric: tabular-nums; opacity: 0; transition: opacity .3s; }
+.rc-dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--line); position: relative; transition: background .3s, border-color .3s; }
+.rc-steps li.run { color: var(--fg); }
+.rc-steps li.run .rc-dot { border-color: var(--ular); border-right-color: transparent; animation: rcspin .8s linear infinite; }
+.rc-steps li.done { color: var(--fg); }
+.rc-steps li.done em { opacity: 1; color: var(--muted); }
+.rc-steps li.done .rc-dot { background: #16a34a; border-color: #16a34a; }
+.rc-steps li.done .rc-dot::after { content: ""; position: absolute; left: 5px; top: 2px; width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.rc-foot { display: flex; align-items: center; gap: 12px; padding: 16px 24px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); opacity: .35; transition: opacity .4s; }
+.runcard.finished .rc-foot { opacity: 1; }
+.rc-tag { padding: 3px 10px; border-radius: 999px; background: #dcfce7; color: #15803d; font-weight: 700; font-size: 13px; white-space: nowrap; }
+@keyframes rcspin { to { transform: rotate(360deg); } }
+@media (max-width: 900px) { .runcard { margin-bottom: 48px; } }
+@media (max-width: 480px) { .rc-head { flex-direction: column; align-items: flex-start; } .rc-steps, .rc-head, .rc-foot { padding-left: 18px; padding-right: 18px; } }
