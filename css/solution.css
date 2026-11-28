@@ -1,0 +1,250 @@
+/* =========================================================
+   Страница решения (конфигурация, задача, обмен)
+   ========================================================= */
+.sol-hero { padding: 40px 0 0; }
+.sol-hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 56px; align-items: center; }
+.sol-group { display: inline-flex; height: 30px; align-items: center; padding: 0 14px; border-radius: 99px; background: rgba(255, 255, 255, .16); border: 1px solid rgba(255, 255, 255, .28); font-size: 13px; font-weight: 600; margin-bottom: 16px; }
+.sol-hero h1 { font-size: clamp(2.1rem, 3.6vw, 3.3rem); }
+
+/* окно программы */
+.sol-mock { border-radius: 22px; background: var(--white); color: var(--ink); box-shadow: 0 40px 80px -30px rgba(8, 20, 60, .55); overflow: hidden; transform: rotate(-1deg); }
+.sm-bar { display: flex; align-items: center; gap: 6px; height: 40px; padding: 0 16px; background: #EEF2F9; border-bottom: 1px solid var(--line); }
+.sm-bar i { width: 10px; height: 10px; border-radius: 50%; background: #D3DBE8; }
+.sm-bar span { margin-left: 10px; font-size: 12.5px; color: var(--muted); font-weight: 600; }
+.sm-body { display: grid; grid-template-columns: 112px minmax(0, 1fr); }
+.sm-nav { display: flex; flex-direction: column; gap: 2px; padding: 14px 10px; background: #F7F9FD; border-right: 1px solid var(--line); }
+.sm-nav span { padding: 8px 10px; border-radius: 8px; font-size: 13px; color: var(--muted); font-weight: 500; }
+.sm-nav .on { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.sm-main { padding: 18px 20px 20px; }
+.sm-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.sm-head strong { display: block; font: 600 18px/1.2 var(--font-head); }
+.sm-head span { display: block; font-size: 12.5px; color: var(--muted); margin-top: 3px; }
+.sm-pill { font-style: normal; font-size: 12px; font-weight: 600; color: #1A7F4B; background: #E3F6EC; padding: 5px 10px; border-radius: 99px; white-space: nowrap; }
+.sm-rows { margin-top: 16px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.sm-row { display: grid; grid-template-columns: minmax(0, 1fr) 64px 92px; align-items: center; gap: 10px; padding: 10px 14px; font-size: 13px; border-top: 1px solid var(--line); }
+.sm-row:first-child { border-top: 0; }
+.sm-th { background: #F7F9FD; color: var(--muted); font-size: 12px; font-weight: 600; }
+.sm-row i { display: block; height: 8px; border-radius: 99px; background: #DCE4F2; }
+.sm-row .ok, .sm-row .wait { font-size: 12px; font-weight: 600; }
+.sm-row .ok { color: #1A7F4B; } .sm-row .wait { color: #B7791F; }
+.sm-foot { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.sm-foot div { padding: 10px 12px; border-radius: 10px; background: var(--bg); }
+.sm-foot span { display: block; font-size: 11.5px; color: var(--muted); }
+.sm-foot strong { font: 600 13.5px var(--font-head); }
+
+/* факты под первым экраном */
+.sol-facts { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); margin: 44px 0 0; border-top: 1px solid rgba(255, 255, 255, .22); }
+.sol-facts div { padding: 22px 24px 26px 0; }
+.sol-facts div + div { padding-left: 24px; border-left: 1px solid rgba(255, 255, 255, .22); }
+.sol-facts dt { font-size: 13px; color: rgba(255, 255, 255, .7); }
+.sol-facts dd { margin: 6px 0 0; font: 600 16.5px/1.35 var(--font-head); color: var(--white); }
+
+/* три участка */
+.sol-sec { padding-top: 56px; }
+.sol-sec + .sol-sec { padding-top: 0; }
+.sol-areas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.sol-area { display: flex; flex-direction: column; padding: 24px; border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
+.sol-area-art { height: 132px; margin: -4px -4px 20px; padding: 18px; border-radius: 12px; background: var(--bg); }
+.sol-tag { align-self: flex-start; font-size: 12.5px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 4px 10px; border-radius: 99px; }
+.sol-area h3 { margin-top: 12px; font-size: 1.3rem; }
+.sol-area p { margin-top: 8px; color: var(--muted); font-size: 15px; flex: 1; }
+.sol-area .result { margin-top: 16px; }
+
+.art-funnel { display: flex; flex-direction: column; justify-content: center; gap: 9px; height: 100%; }
+.art-funnel div { display: grid; grid-template-columns: 92px 1fr; align-items: center; gap: 10px; font-size: 12px; color: var(--muted); }
+.art-funnel i { display: block; height: 12px; width: var(--w); border-radius: 99px; background: #C9D7F3; }
+.art-funnel i.hot { background: var(--accent); }
+.art-cells { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; height: 100%; }
+.art-cells i { border-radius: 6px; background: #DCE4F2; }
+.art-cells i.full { background: #9DB5EA; }
+.art-cells i.pick { background: #FFC93C; box-shadow: 0 0 0 3px rgba(255, 201, 60, .35); }
+.art-cal { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; height: 100%; }
+.art-cal div { display: flex; align-items: flex-end; justify-content: center; gap: 4px; padding: 6px 4px 0; border-radius: 8px; }
+.art-cal div.gap { background: #FDEFED; }
+.art-cal i { width: 12px; height: var(--h); border-radius: 4px 4px 2px 2px; }
+.art-cal .in { background: var(--accent); } .art-cal .out { background: #B9CAEE; }
+.art-cal .gap .out { background: #E5604D; }
+
+/* две колонки */
+.sol-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; align-items: start; }
+.sol-feats { list-style: none; margin: 0; padding: 8px 24px; border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
+.sol-feats li { display: grid; grid-template-columns: 26px 1fr; gap: 12px; padding: 13px 0; border-top: 1px solid var(--line); font-size: 15px; color: var(--ink); }
+.sol-feats li:first-child { border-top: 0; }
+.sol-check { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+.sol-check .ico { width: 15px; height: 15px; stroke-width: 2.4; }
+
+/* схема связей */
+.sol-links { position: relative; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto 150px auto; gap: 0 48px; padding: 24px; border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
+.sol-wires { position: absolute; inset: 24px; width: calc(100% - 48px); height: calc(100% - 48px); z-index: 0; }
+.sol-wires path { fill: none; stroke-width: 2; vector-effect: non-scaling-stroke; }
+.sol-wires .w-std { stroke: var(--accent); }
+.sol-wires .w-own { stroke: #F2B544; stroke-dasharray: 6 6; }
+.sol-node { position: relative; z-index: 1; padding: 14px 16px; border-radius: 14px; background: var(--white); border: 1.5px solid var(--accent); }
+.sol-node.is-own { border: 1.5px dashed #F2B544; }
+.sol-node strong { display: block; font: 600 14.5px/1.3 var(--font-head); color: var(--ink); }
+.sol-node span { display: block; font-size: 13px; color: var(--muted); margin-top: 3px; }
+.sol-node-1 { grid-area: 1 / 1; } .sol-node-2 { grid-area: 1 / 2; } .sol-node-3 { grid-area: 3 / 1; } .sol-node-4 { grid-area: 3 / 2; }
+.sol-hub { grid-area: 2 / 1 / 3 / 3; place-self: center; position: relative; z-index: 1; display: flex; align-items: center; gap: 12px; padding: 14px 20px 14px 14px; border-radius: 16px; background: var(--navy); color: var(--white); box-shadow: 0 18px 36px -16px rgba(19, 37, 74, .6); }
+.sol-hub span { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; background: #FFC93C; color: var(--navy); font: 600 15px var(--font-head); }
+.sol-hub strong { font: 600 16px var(--font-head); }
+.sol-legend { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 14px; font-size: 13.5px; color: var(--muted); }
+.sol-legend span { display: inline-flex; align-items: center; gap: 8px; }
+.sol-legend i { width: 22px; height: 0; border-top: 2px solid var(--accent); }
+.sol-legend i.w-own { border-top: 2px dashed #F2B544; }
+
+/* сравнение версий */
+.sol-table { border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); overflow: hidden; }
+.sol-tr { display: grid; grid-template-columns: minmax(0, 1fr) 120px 120px; align-items: center; border-top: 1px solid var(--line); }
+.sol-tr:first-child { border-top: 0; }
+.sol-tr > span { padding: 14px 20px; font-size: 15px; color: var(--ink); }
+.sol-tr > span + span { text-align: center; border-left: 1px solid var(--line); font-weight: 600; }
+.sol-th { background: var(--navy); }
+.sol-th > span { color: var(--white); font: 600 15px var(--font-head); border-left-color: rgba(255, 255, 255, .15) !important; }
+.sol-tr .yes { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #E3F6EC; color: #1A7F4B; vertical-align: middle; }
+.sol-tr .yes .ico { width: 15px; height: 15px; stroke-width: 2.4; }
+.sol-tr .no { color: #A3AEC2; font-weight: 600; }
+.sol-note { margin-top: 12px; font-size: 14px; color: var(--muted); }
+
+/* кому подходит */
+.sol-fit { display: flex; flex-direction: column; gap: 12px; }
+.sol-fit-item { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 20px; border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
+.sol-fit-num { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: #FFC93C; color: var(--navy); font: 600 18px var(--font-head); }
+.sol-fit-item h3 { font-size: 1.1rem; }
+.sol-fit-item p { margin-top: 4px; color: var(--muted); font-size: 15px; }
+
+/* как внедряем */
+.sol-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: s; }
+.sol-steps li { position: relative; padding: 22px; border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); }
+.sol-step-num { font: 600 15px var(--font-head); color: var(--accent); }
+.sol-steps h3 { margin-top: 10px; font-size: 1.15rem; }
+.sol-steps p { margin-top: 6px; color: var(--muted); font-size: 14.5px; }
+
+@media (max-width: 1080px) {
+  .sol-hero-grid { grid-template-columns: 1fr; gap: 36px; }
+  .sol-mock { max-width: 620px; transform: none; }
+  .sol-facts { grid-template-columns: repeat(2, 1fr); }
+  .sol-facts div:nth-child(3) { padding-left: 0; border-left: 0; }
+  .sol-facts div:nth-child(n+3) { border-top: 1px solid rgba(255, 255, 255, .22); }
+  .sol-two { grid-template-columns: 1fr; }
+  .sol-steps { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 760px) {
+  .sol-areas { grid-template-columns: 1fr; }
+  .sol-facts { grid-template-columns: 1fr; }
+  .sol-facts div, .sol-facts div + div { padding: 16px 0; border-left: 0; border-top: 1px solid rgba(255, 255, 255, .22); }
+  .sol-facts div:first-child { border-top: 0; }
+  .sm-body { grid-template-columns: 1fr; }
+  .sm-nav { flex-direction: row; overflow: hidden; border-right: 0; border-bottom: 1px solid var(--line); padding: 8px; }
+  .sm-row { grid-template-columns: minmax(0, 1fr) 44px 80px; padding: 9px 12px; }
+  .sol-links { grid-template-columns: 1fr; grid-template-rows: none; gap: 10px; }
+  .sol-wires { display: none; }
+  .sol-hub { grid-area: auto; place-self: stretch; order: -1; }
+  .sol-node-1, .sol-node-2, .sol-node-3, .sol-node-4 { grid-area: auto; }
+  .sol-tr { grid-template-columns: minmax(0, 1fr) 84px 84px; }
+  .sol-tr > span { padding: 12px 12px; font-size: 14px; }
+  .sol-steps { grid-template-columns: 1fr; }
+}
+
+/* колонки одной высоты: схема и таблица тянутся под соседний блок */
+@media (min-width: 1081px) {
+  .sol-two { align-items: stretch; }
+  .sol-two > div { display: flex; flex-direction: column; }
+  .sol-links { flex: 1; grid-template-rows: auto minmax(150px, 1fr) auto; }
+  .sol-table { flex: 1; display: flex; flex-direction: column; }
+  .sol-table .sol-tr { flex: 1; }
+}
+@media (max-width: 760px) {
+  .sol-tr { grid-template-columns: minmax(0, 1fr) 92px 76px; }
+  .sol-tr > span + span { padding: 12px 6px; font-size: 13px; }
+  .sm-nav span:nth-child(n+5) { display: none; }
+}
+
+/* =========================================================
+   Цветной ритм: синий → белый → светлый → тёмно-синий → жёлтый
+   Акцент страницы — жёлтый #FFC93C из логотипа
+   ========================================================= */
+.sol-sec { padding: 64px 0 72px !important; }
+.band-white { background: var(--white); }
+.band-light { background: var(--bg); }
+.band-navy { background: var(--navy); color: var(--white); }
+.band-yellow { background: #FFC93C; }
+.band-navy .pg-head h2 { color: var(--white); }
+.band-yellow .pg-head h2 { color: var(--navy); }
+
+/* участки: цветные шапки карточек */
+.band-white .sol-area { background: var(--bg); box-shadow: none; border: 1px solid var(--line); }
+.sol-area-sales .sol-area-art { background: linear-gradient(150deg, #3D84FF, var(--accent)); }
+.sol-area-sales .art-funnel div { color: rgba(255, 255, 255, .85); }
+.sol-area-sales .art-funnel i { background: rgba(255, 255, 255, .35); }
+.sol-area-sales .art-funnel i.hot { background: #FFC93C; }
+.sol-area-stock .sol-area-art { background: linear-gradient(160deg, #FFD452, #FFB81C); }
+.sol-area-stock .art-cells i { background: rgba(19, 37, 74, .12); }
+.sol-area-stock .art-cells i.full { background: rgba(19, 37, 74, .35); }
+.sol-area-stock .art-cells i.pick { background: var(--navy); box-shadow: none; }
+.sol-area-money .sol-area-art { background: linear-gradient(150deg, #1E3770, var(--navy)); }
+.sol-area-money .art-cal .in { background: #5B8DF0; }
+.sol-area-money .art-cal .out { background: rgba(255, 255, 255, .3); }
+.sol-area-money .art-cal div.gap { background: rgba(229, 96, 77, .22); }
+.sol-tag { background: var(--navy); color: var(--white); }
+.sol-area .result { color: var(--navy); background: #FFF3CF; border-radius: 10px; padding: 10px 12px; font-weight: 600; }
+
+/* возможности: жёлтые галочки */
+.sol-check { background: #FFC93C; color: var(--navy); }
+.sol-hub { background: #FFC93C; color: var(--navy); }
+.sol-hub span { background: var(--navy); color: #FFC93C; }
+
+/* тёмная полоса: таблица и «кому подходит» */
+.band-navy .sol-table { box-shadow: none; }
+.band-navy .sol-th { background: #FFC93C; }
+.band-navy .sol-th > span { color: var(--navy); border-left-color: rgba(19, 37, 74, .15) !important; }
+.band-navy .sol-note { color: rgba(255, 255, 255, .7); }
+.band-navy .sol-fit-item { background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .14); box-shadow: none; }
+.band-navy .sol-fit-item h3 { color: var(--white); }
+.band-navy .sol-fit-item p { color: rgba(255, 255, 255, .72); }
+
+/* жёлтая полоса: шаги */
+.band-yellow .sol-steps li { box-shadow: 0 14px 30px -18px rgba(120, 80, 0, .5); }
+.sol-step-num { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--navy); color: #FFC93C; font-size: 16px; }
+.band-yellow .cta-bar { box-shadow: 0 24px 50px -24px rgba(19, 37, 74, .7); }
+
+/* =========================================================
+   Каталог решений на 1С
+   ========================================================= */
+.cat-hero { background: var(--navy); color: var(--white); padding: 36px 0 44px; }
+.cat-hero .crumbs { color: rgba(255, 255, 255, .6); margin-bottom: 20px; }
+.cat-hero .crumbs a:hover, .cat-hero .crumbs > span:last-child { color: var(--white); }
+.cat-hero-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 440px); gap: 40px; align-items: end; }
+.cat-hero h1 { color: var(--white); font-size: clamp(2.2rem, 4vw, 3.4rem); letter-spacing: -0.035em; }
+.cat-hero h1 + p { margin-top: 12px; font-size: 18px; color: rgba(255, 255, 255, .75); max-width: 560px; }
+.cat-search { display: flex; align-items: center; gap: 10px; height: 56px; padding: 0 18px; border-radius: 14px; background: var(--white); }
+.cat-search svg { width: 20px; height: 20px; fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; flex-shrink: 0; }
+.cat-search input { flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: transparent; font: 500 16px var(--font-body); color: var(--ink); }
+.cat-search:focus-within { box-shadow: 0 0 0 3px #FFC93C; }
+
+.cat-nav { position: sticky; top: 64px; z-index: 20; background: var(--white); border-bottom: 1px solid var(--line); }
+.cat-nav .container { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.cat-nav a { flex-shrink: 0; display: inline-flex; align-items: center; gap: 8px; height: 56px; padding: 0 14px; font-weight: 600; font-size: 15px; color: var(--ink); border-bottom: 3px solid transparent; }
+.cat-nav a span { font-size: 12.5px; color: var(--muted); font-weight: 600; }
+.cat-nav a:hover, .cat-nav a.is-active { border-bottom-color: #FFC93C; }
+
+.cat-body { padding: 16px 0 72px; background: var(--bg); }
+.cat-group { padding-top: 40px; scroll-margin-top: 130px; }
+.cat-group-head { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+.cat-group-head h2 { font-size: clamp(1.5rem, 2.2vw, 2rem); letter-spacing: -0.03em; }
+.cat-group-head p { color: var(--muted); font-size: 15.5px; }
+.cat-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.cat-list li { display: flex; }
+.cat-item { flex: 1; display: flex; flex-direction: column; gap: 6px; padding: 20px 22px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); transition: border-color .15s, transform .15s var(--ease); }
+.cat-item:hover { border-color: var(--navy); transform: translateY(-2px); }
+.cat-item strong { font: 600 16px/1.3 var(--font-head); color: var(--ink); }
+.cat-item span { font-size: 14.5px; color: var(--muted); flex: 1; }
+.cat-item em { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-style: normal; font-size: 14px; font-weight: 600; color: var(--muted); }
+.cat-item em .ico { width: 16px; height: 16px; }
+.cat-item.has-page { border-color: #FFC93C; box-shadow: inset 4px 0 0 #FFC93C; }
+.cat-item.has-page em { color: var(--navy); }
+.cat-item:hover em { color: var(--navy); }
+.cat-empty { padding: 48px 0 8px; font-size: 17px; color: var(--muted); }
+.cat-body .cta-bar { margin-top: 48px; }
+
+@media (max-width: 1080px) { .cat-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } .cat-hero-row { grid-template-columns: 1fr; gap: 24px; } }
+@media (max-width: 640px) { .cat-list { grid-template-columns: 1fr; } .cat-nav a { height: 50px; font-size: 14px; } }
