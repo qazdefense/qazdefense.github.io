@@ -158,7 +158,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     linear-gradient(180deg, var(--surface), color-mix(in srgb, var(--surface) 70%, var(--bg)));
   box-shadow: 0 1px 0 rgba(255,255,255,.5) inset, 0 24px 48px -28px rgba(60, 30, 10, .45);
 }
-.route-svg { display: block; width: 100%; min-width: 860px; height: auto; overflow: visible; }
+.route-svg { display: block; width: auto; max-width: none; height: auto; overflow: visible; }
 .road-bed { fill: none; stroke: color-mix(in srgb, var(--fg) 8%, transparent); stroke-width: 22; stroke-linecap: round; }
 .road-future { fill: none; stroke: var(--sun); stroke-width: 4; stroke-dasharray: 1 13; stroke-linecap: round;
   animation: build 1.6s linear infinite; }
@@ -1399,3 +1399,11 @@ html.i18n-wait body, html.lang-fade body { opacity: 0; }
 
 .hero-text .ver { margin: 14px 0 0; font-size: 14px; opacity: .85; }
 .hero-text .ver a { color: inherit; text-underline-offset: 3px; }
+
+/* Карта шире экрана: тянется мышью, текущий этап по центру */
+.route-scroll { cursor: grab; overscroll-behavior-x: contain; }
+.route-scroll.dragging { cursor: grabbing; user-select: none; }
+.route-scroll.dragging .node { cursor: grabbing; }
+.road-tail.road-future { opacity: .55; }
+.road-tail.road-bed { opacity: .6; }
+.road-next { opacity: .7; }

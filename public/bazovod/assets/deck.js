@@ -60,18 +60,26 @@
     host.appendChild(stats);
 
     // Дорога: волна через все остановки
-    var W = 1200, H = 260, padX = 70, n = ms.length;
-    var pts = ms.map(function (m, i) {
-      return { x: padX + i * (W - 2 * padX) / (n - 1), y: i % 2 ? 172 : 98 };
-    });
-    var d = "M " + pts[0].x + " " + pts[0].y;
-    for (var i = 1; i < n; i++) {
-      var a = pts[i - 1], b2 = pts[i], cx = (b2.x - a.x) / 2;
-      d += " C " + (a.x + cx) + " " + a.y + ", " + (b2.x - cx) + " " + b2.y + ", " + b2.x + " " + b2.y;
+    // Остановки идут с постоянным шагом. После последней дорога продолжается еще на два шага:
+    // текущий этап не прижат к краю, а впереди видно, что путь не закончен.
+    var STEP = 190, H = 260, padX = 110, n = ms.length;
+    // Хвост такой длины, чтобы текущий этап можно было поставить в центр на любом экране
+    var TAIL = Math.max(2, Math.ceil((host.clientWidth || 1200) / 2 / STEP));
+    var W = padX * 2 + (n - 1 + TAIL) * STEP;
+    var pts = [];
+    for (var i0 = 0; i0 < n + TAIL; i0++) pts.push({ x: padX + i0 * STEP, y: i0 % 2 ? 172 : 98 });
+    function curve(from, to) {
+      var dd = "M " + pts[from].x + " " + pts[from].y;
+      for (var i = from + 1; i <= to; i++) {
+        var a = pts[i - 1], b2 = pts[i], cx = (b2.x - a.x) / 2;
+        dd += " C " + (a.x + cx) + " " + a.y + ", " + (b2.x - cx) + " " + b2.y + ", " + b2.x + " " + b2.y;
+      }
+      return dd;
     }
+    var d = curve(0, n - 1), dTail = curve(n - 1, n - 1 + TAIL);
 
     var scroll = el("div", "route-scroll");
-    var s = svg("svg", { viewBox: "0 0 " + W + " " + H, class: "route-svg", role: "img",
+    var s = svg("svg", { viewBox: "0 0 " + W + " " + H, width: W, height: H, class: "route-svg", role: "img",
       "aria-label": T("Маршрут развития: пройдено {done} этапов из {total}", { done: done.length, total: ms.length }) });
     var defs = svg("defs", {});
     var grad = svg("linearGradient", { id: "rg", x1: "0", x2: "1", y1: "0", y2: "0" });
@@ -85,7 +93,12 @@
     s.appendChild(defs);
 
     s.appendChild(svg("path", { d: d, class: "road-bed" }));
+    s.appendChild(svg("path", { d: dTail, class: "road-bed road-tail" }));
     s.appendChild(svg("path", { d: d, class: "road-future" }));
+    s.appendChild(svg("path", { d: dTail, class: "road-future road-tail" }));
+    var ahead = svg("text", { x: pts[n].x + STEP * 0.5, y: Math.max(pts[n].y, pts[n + 1].y) + 34, class: "node-date road-next", "text-anchor": "middle" });
+    ahead.textContent = T("дальше");
+    s.appendChild(ahead);
     var passed = svg("path", { d: d, class: "road-passed", stroke: "url(#rg)", filter: "url(#rs)" });
     s.appendChild(passed);
 
@@ -176,6 +189,33 @@
     host.appendChild(all);
 
     var nodeEls = nodes.children;
+    // Карту можно тянуть мышью или пальцем; колесо листает ее вбок
+    var drag = null;
+    scroll.addEventListener("pointerdown", function (e) {
+      if (e.pointerType !== "mouse" || e.button !== 0) return;
+      drag = { x: e.clientX, left: scroll.scrollLeft, moved: false };
+    });
+    window.addEventListener("pointermove", function (e) {
+      if (!drag) return;
+      var dx = e.clientX - drag.x;
+      if (!drag.moved && Math.abs(dx) < 4) return;
+      drag.moved = true; scroll.classList.add("dragging");
+      scroll.scrollLeft = drag.left - dx;
+    });
+    window.addEventListener("pointerup", function () {
+      if (drag && drag.moved) { var stop = function (e) { e.stopPropagation(); e.preventDefault(); }; scroll.addEventListener("click", stop, { capture: true, once: true }); setTimeout(function () { scroll.removeEventListener("click", stop, true); }, 0); }
+      drag = null; scroll.classList.remove("dragging");
+    });
+    scroll.addEventListener("wheel", function (e) {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX) || scroll.scrollWidth <= scroll.clientWidth) return;
+      var max = scroll.scrollWidth - scroll.clientWidth;
+      if ((e.deltaY < 0 && scroll.scrollLeft <= 0) || (e.deltaY > 0 && scroll.scrollLeft >= max)) return;
+      e.preventDefault(); scroll.scrollLeft += e.deltaY;
+    }, { passive: false });
+    function center(i, smooth) {
+      var x = pts[i].x / W * scroll.scrollWidth - scroll.clientWidth / 2 + parseFloat(getComputedStyle(scroll).paddingLeft || 0);
+      scroll.scrollTo({ left: Math.max(0, x), behavior: smooth && !reduce ? "smooth" : "auto" });
+    }
     function pointTo(i) {
       var r = nodeEls[i].querySelector(".ring").getBoundingClientRect(), pr = panel.getBoundingClientRect();
       panel.style.setProperty("--caret", Math.round(r.left + r.width / 2 - pr.left) + "px");
@@ -208,15 +248,12 @@
       inner.appendChild(ul);
       card.replaceChildren(inner);
       pointTo(i);
-      if (user && scroll.scrollWidth > scroll.clientWidth) {
-        var x = pts[i].x / W * scroll.scrollWidth - scroll.clientWidth / 2;
-        scroll.scrollTo({ left: x, behavior: reduce ? "auto" : "smooth" });
-      }
+      if (user && scroll.scrollWidth > scroll.clientWidth) center(i, true);
     }
 
     // Где на дороге «мы здесь»: между последней пройденной и следующей остановкой
     var lastDone = ms.map(function (m) { return m.status; }).lastIndexOf("done");
-    var total, target;
+    var total, target, exact = null;
     function lengthAt(pt) {
       var best = 0, bestD = 1e9;
       for (var L = 0; L <= total; L += 4) {
@@ -230,6 +267,7 @@
       var a = lengthAt(pts[lastDone]);
       var b = lastDone + 1 < n ? lengthAt(pts[lastDone + 1]) : a;
       target = a + (b - a) * 0.42;
+      exact = lastDone + 1 >= n ? pts[lastDone] : null;
       // Плашка - с той стороны, где дорога не проходит: на спуске сверху справа, на подъеме снизу справа
       var down = lastDone + 1 < n && pts[lastDone + 1].y > pts[lastDone].y;
       here.tag.setAttribute("transform", down ? "translate(16 -46)" : "translate(18 22)");
@@ -241,6 +279,8 @@
     function place(L) {
       passed.style.strokeDashoffset = total - L;
       var p = passed.getPointAtLength(L);
+      // В конце пути метка садится точно в центр кружка этапа, без погрешности длины кривой
+      if (exact && L >= target - 0.5) p = exact;
       here.setAttribute("transform", "translate(" + p.x + " " + p.y + ")");
     }
 
@@ -261,7 +301,10 @@
       requestAnimationFrame(step);
     }
     measure(); place(0);
-    select(Math.min(lastDone + 1, n - 1), false);
+    var current = lastDone + 1 < n && ms[lastDone + 1].status === "next" ? lastDone + 1 : lastDone;
+    select(current, false);
+    // При открытии в центре текущий этап
+    requestAnimationFrame(function () { center(Math.max(0, lastDone), false); pointTo(selected); });
     return { play: play, played: function () { return played; } };
   }
 
